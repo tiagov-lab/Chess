@@ -75,10 +75,9 @@ namespace Chess
                     {
                         Console.Write(board[row, col]);
                     }
-
-
-                    Console.WriteLine();
                 }
+
+                Console.WriteLine();
             }
         }
     }

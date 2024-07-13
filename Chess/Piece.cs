@@ -53,7 +53,7 @@ namespace Chess
                 case Colour.White:
                     switch (this.Type)
                     {
-                        case PieceType.King: return "\u2654";
+                        case PieceType.King: return "♘";
                         case PieceType.Queen: return "\u2655";
                         case PieceType.Rook: return "\u2656";
                         case PieceType.Bishop: return "\u2657";
