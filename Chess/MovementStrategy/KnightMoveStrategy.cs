@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Chess.MovementStrategy
 {
-    internal class KnightMoveStrategy
+    internal class KnightMoveStrategy : IMoveStrategy
     {
+        public List<(int, int)> GetPossibleMoves(Piece piece, Board board)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

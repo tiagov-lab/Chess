@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chess.MovementStrategy;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace Chess
         public Position Position { get; set; }
         public Colour Color { get; set; }
         public PieceType Type { get; set; }
-        
+        private IMoveStrategy moveStrategy;
+
         public Dictionary<PieceType, char> Colours { get; set; }
 
         public enum Colour
@@ -75,15 +77,23 @@ namespace Chess
             }
         }
 
-        private void MoveTo(int x, int y)
+        private void SetMoveStrategy()
         {
-            Position.X = x; Position.Y = y;
+            moveStrategy = Type switch
+            {
+                PieceType.Pawn => new PawnMoveStrategy(),
+                PieceType.Rook => new RookMoveStrategy(),
+                PieceType.Knight => new KnightMoveStrategy(),
+                PieceType.Bishop => new BishopMoveStrategy(),
+                PieceType.Queen => new QueenMoveStrategy(),
+                PieceType.King => new KingMoveStrategy(),
+                _ => throw new ArgumentException("Unknown piece type")
+            };
         }
 
-
-        public void Move(int x, int y) 
-        { 
-         
+        public List<(int, int)> GetPossibleMoves(Board board)
+        {
+            return moveStrategy.GetPossibleMoves(this, board);
         }
     }
 }
