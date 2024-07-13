@@ -11,7 +11,7 @@ namespace Chess
 {
     public class Piece
     {
-        public (int X, int Y) Position { get; set; }
+        public Position Position { get; set; }
         public Colour Color { get; set; }
         public PieceType Type { get; set; }
         
@@ -33,18 +33,12 @@ namespace Chess
             King
         }
 
-        public Piece(int x, int y, Colour color, PieceType type)
+        public Piece(Position inputPosition, Colour inputColor, PieceType inputType)
         {
-            Position = (x, y);
-            Color = color;
-            Type = type;
+            Position = inputPosition;
+            Color = inputColor;
+            Type = inputType;
         }
-
-        public void MoveTo(int x, int y)
-        {
-            Position = (x, y);
-        }
-
 
         public override string ToString()
         {
@@ -53,7 +47,7 @@ namespace Chess
                 case Colour.White:
                     switch (this.Type)
                     {
-                        case PieceType.King: return "♘";
+                        case PieceType.King: return "\u2654";
                         case PieceType.Queen: return "\u2655";
                         case PieceType.Rook: return "\u2656";
                         case PieceType.Bishop: return "\u2657";
@@ -77,6 +71,16 @@ namespace Chess
                 default:
                     return "?";
             }
+        }
+
+        private void MoveTo(int x, int y)
+        {
+            Position = new Position(int x, int y);
+        }
+
+        public void Move(int x, int y) 
+        { 
+         
         }
     }
 }
