@@ -59,6 +59,31 @@ namespace Chess
             board[y, x] = new Piece(x, y, color, type);
         }
 
+        public void displayBoard()
+        {
+            Console.Clear();
+
+            for (int col = 0; col < 8; col++)
+            {
+                for (int row = 0; row < 8; row++)
+                {
+                    if (board[row, col] == null)
+                    {
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write(board[row, col]);
+                    }
+
+
+                    Console.WriteLine();
+                }
+            }
+        }
     }
 }
+
+   
+
 
