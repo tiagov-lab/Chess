@@ -11,6 +11,7 @@ namespace Chess
 {
     public class Piece
     {
+        public List<Piece> PieceList = new List<Piece>();
         public Position Position { get; set; }
         public Colour Color { get; set; }
         public PieceType Type { get; set; }
@@ -38,6 +39,7 @@ namespace Chess
             Position = inputPosition;
             Color = inputColor;
             Type = inputType;
+            PieceList.Add(this);
         }
 
         public override string ToString()
@@ -75,8 +77,9 @@ namespace Chess
 
         private void MoveTo(int x, int y)
         {
-            Position = new Position(int x, int y);
+            Position.X = x; Position.Y = y;
         }
+
 
         public void Move(int x, int y) 
         { 

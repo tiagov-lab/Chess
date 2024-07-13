@@ -11,10 +11,10 @@ namespace Chess
         public int X;
         public int Y;
 
-        Position(int x, int y)
+        public Position(int inputX, int inputY)
         {
-            X = x;
-            Y = y;
-        }   
+            this.X = inputX;
+            this.Y = inputY;
+        }
     }
 }

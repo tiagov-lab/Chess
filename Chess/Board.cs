@@ -9,7 +9,7 @@ using static Chess.Piece;
 
 namespace Chess
 {
-    internal class Board
+    public class Board
     {
         public Piece[,] board;
 
@@ -56,7 +56,7 @@ namespace Chess
 
         private void PlacePiece(int x, int y, Colour color, PieceType type)
         {
-            board[y, x] = new Piece(x, y, color, type);
+            board[y, x] = new Piece(new Position(x, y), color, type);
         }
 
         public void displayBoard()
@@ -69,7 +69,7 @@ namespace Chess
                 {
                     if (board[row, col] == null)
                     {
-                        Console.Write(" ");
+                        Console.Write(".");
                     }
                     else
                     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess
+namespace Chess.MovementStrategy
 {
-    public static class MovementManager
+    public class MovementManager
     {
         public static List<Position> FindValidMove(Piece inputPiece, Board inputBoard)
         {
