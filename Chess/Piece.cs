@@ -16,6 +16,7 @@ namespace Chess
         public Position Position { get; set; }
         public Colour Color { get; set; }
         public PieceType Type { get; set; }
+
         private IMoveStrategy moveStrategy;
 
         public Dictionary<PieceType, char> Colours { get; set; }
@@ -42,6 +43,7 @@ namespace Chess
             Color = inputColor;
             Type = inputType;
             PieceList.Add(this);
+            SetMoveStrategy();
         }
 
         public override string ToString()
