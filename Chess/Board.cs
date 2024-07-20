@@ -41,7 +41,7 @@ namespace Chess
             PlacePiece(7, 0, Colour.Black, PieceType.Rook);
             PlacePiece(7, 1, Colour.Black, PieceType.Knight);
             PlacePiece(7, 2, Colour.Black, PieceType.Bishop);
-            PlacePiece(7, 3, Colour.Black, PieceType.Queen);
+            PlacePiece(0, 3, Colour.White, PieceType.Queen);
             PlacePiece(7, 4, Colour.Black, PieceType.King);
             PlacePiece(7, 5, Colour.Black, PieceType.Bishop);
             PlacePiece(7, 6, Colour.Black, PieceType.Knight);
@@ -79,6 +79,18 @@ namespace Chess
 
                 Console.WriteLine();
             }
+        }
+
+        public Piece? GetPieceAt(int x, int y)
+        {
+            if (x < 0 || x >= 8 || y < 0 || y >= 8)
+                return null;
+            return board[y, x];
+        }
+
+        public bool IsValidPosition(int x, int y)
+        {
+            return x >= 0 && x < 8 && y >= 0 && y < 8;
         }
     }
 }

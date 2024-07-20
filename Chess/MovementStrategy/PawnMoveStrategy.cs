@@ -10,7 +10,26 @@ namespace Chess.MovementStrategy
     {
         public List<(int, int)> GetPossibleMoves(Piece piece, Board board)
         {
+            var returnList = new List<(int, int)>();
             // Check if rook is in first space
+            if (piece.Color == Piece.Colour.White)
+            {
+                if (piece.Position.Y == 1)
+                {
+                    // If there is another piece there
+                    if (board[piece.Position.X, piece.Position.Y + 2] == null) 
+                    {
+                        returnList.Add((piece.Position.X, piece.Position.Y + 2));
+                    }
+                }
+            }
+            else
+            {
+                if (piece.Position.Y == 6)
+                {
+                    returnList.Add((piece.Position.X, piece.Position.Y - 2));
+                }
+            }
              // Take colour into account
             //
              // Check if there is a piece in tile ahead, break loop
