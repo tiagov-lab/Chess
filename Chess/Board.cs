@@ -19,6 +19,23 @@ namespace Chess
             InitializeBoard();
         }
 
+        // Indexer
+        public Piece? this[int row, int col]
+        {
+            get
+            {
+                if (IsValidPosition(row, col))
+                    return board[row, col];
+                return null;
+            }
+            set
+            {
+                // Don't use now! Figure out a better way later
+                if (IsValidPosition(row, col))
+                    board[row, col] = value;
+            }
+        }
+
         private void InitializeBoard()
         {
             // Place white pieces

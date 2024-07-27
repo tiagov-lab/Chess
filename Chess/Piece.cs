@@ -13,9 +13,12 @@ namespace Chess
     public class Piece
     {
         public List<Piece> PieceList = new List<Piece>();
-        public Position Position { get; set; }
+        public Position Pos { get; set; }
         public Colour Color { get; set; }
         public PieceType Type { get; set; }
+
+        public Colour enemyColor { get; set; }
+        
 
         private IMoveStrategy moveStrategy;
 
@@ -39,11 +42,23 @@ namespace Chess
 
         public Piece(Position inputPosition, Colour inputColor, PieceType inputType)
         {
-            Position = inputPosition;
+            Pos = inputPosition;
             Color = inputColor;
             Type = inputType;
             PieceList.Add(this);
             SetMoveStrategy();
+            SetEnemyColour();
+            SetEnemyColour();
+        }
+
+        private void SetEnemyColour()
+        {
+            enemyColor = this.Color switch
+            {
+                Colour.White => Colour.Black,
+                Colour.Black => Colour.White,
+                _ => throw new ArgumentException("Invalid color")
+            };
         }
 
         public override string ToString()

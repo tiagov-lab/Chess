@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chess.MovementStrategy
 {
@@ -10,32 +7,49 @@ namespace Chess.MovementStrategy
     {
         public List<(int, int)> GetPossibleMoves(Piece piece, Board board)
         {
-            var returnList = new List<(int, int)>();
-            // Check if rook is in first space
-            if (piece.Color == Piece.Colour.White)
+            var possibleMoves = new List<(int, int)>();
+
+            // Calculate relative positions based on color
+            int forwardOne = piece.Color == Piece.Colour.White ? 1 : -1;
+            int forwardTwo = piece.Color == Piece.Colour.White ? 2 : -2;
+            (int, int) oneForward = (piece.Pos.X, piece.Pos.Y + forwardOne);
+            (int, int) twoForward = (piece.Pos.X, piece.Pos.Y + forwardTwo);
+            (int, int) captureLeft = (piece.Pos.X - 1, piece.Pos.Y + forwardOne);
+            (int, int) captureRight = (piece.Pos.X + 1, piece.Pos.Y + forwardOne);
+
+            // Check one space forward
+            if (board.IsValidPosition(oneForward.Item1, oneForward.Item2) && board[oneForward.Item2, oneForward.Item1] == null)
             {
-                if (piece.Position.Y == 1)
+                possibleMoves.Add(oneForward);
+
+                // Check two spaces forward if in starting position
+                bool isStartingRank = (piece.Color == Piece.Colour.White && piece.Pos.Y == 1) ||
+                                      (piece.Color == Piece.Colour.Black && piece.Pos.Y == 6);
+                if (isStartingRank && board[twoForward.Item2, twoForward.Item1] == null)
                 {
-                    // If there is another piece there
-                    if (board[piece.Position.X, piece.Position.Y + 2] == null) 
-                    {
-                        returnList.Add((piece.Position.X, piece.Position.Y + 2));
-                    }
+                    possibleMoves.Add(twoForward);
                 }
             }
-            else
+
+            // Check diagonal captures
+            CheckDiagonalCapture(board, piece, captureLeft, possibleMoves);
+            CheckDiagonalCapture(board, piece, captureRight, possibleMoves);
+
+            // TODO: Implement en passant logic
+
+            return possibleMoves;
+        }
+
+        private void CheckDiagonalCapture(Board board, Piece piece, (int, int) capturePos, List<(int, int)> possibleMoves)
+        {
+            if (board.IsValidPosition(capturePos.Item1, capturePos.Item2))
             {
-                if (piece.Position.Y == 6)
+                Piece? targetPiece = board[capturePos.Item2, capturePos.Item1];
+                if (targetPiece != null && targetPiece.Color != piece.Color)
                 {
-                    returnList.Add((piece.Position.X, piece.Position.Y - 2));
+                    possibleMoves.Add(capturePos);
                 }
             }
-             // Take colour into account
-            //
-             // Check if there is a piece in tile ahead, break loop
-             // If there isn't, check if there is an enemy piece in diagonal spaces
-               // Add those spaces to list
-            throw new NotImplementedException();
         }
     }
 }
