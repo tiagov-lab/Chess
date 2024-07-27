@@ -8,6 +8,22 @@ namespace Chess
 {
     public static class Gameloop
     {
+        public enum Colour
+        {
+            White,
+            Black
+        }
+
+        public enum PieceType
+        {
+            Pawn,
+            Rook,
+            Knight,
+            Bishop,
+            Queen,
+            King
+        }
+
         public static void Start()
         {
             // Init board

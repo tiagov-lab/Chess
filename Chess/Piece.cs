@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -14,58 +15,26 @@ namespace Chess
     {
         public static List<Piece> PieceList = new List<Piece>();
         public Position Pos { get; set; }
-        public Colour Color { get; set; }
-        public PieceType Type { get; set; }
-
-        public Colour enemyColor { get; set; }
-        
+        public Gameloop.Colour Color { get; set; }
+        public Gameloop.PieceType Type { get; set; }
 
         private IMoveStrategy moveStrategy;
 
-        public Dictionary<PieceType, char> Colours { get; set; }
 
-        public enum Colour
-        {
-            White,
-            Black
-        }
-
-        public enum PieceType
-        {
-            Pawn,
-            Rook,
-            Knight,
-            Bishop,
-            Queen,
-            King
-        }
-
-        public Piece(Position inputPosition, Colour inputColor, PieceType inputType)
+        public Piece(Position inputPosition, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
         {
             Pos = inputPosition;
             Color = inputColor;
             Type = inputType;
             PieceList.Add(this);
             SetMoveStrategy();
-            SetEnemyColour();
-            SetEnemyColour();
-        }
-
-        private void SetEnemyColour()
-        {
-            enemyColor = this.Color switch
-            {
-                Colour.White => Colour.Black,
-                Colour.Black => Colour.White,
-                _ => throw new ArgumentException("Invalid color")
-            };
         }
 
         public override string ToString()
         {
             switch (this.Color)
             {
-                case Colour.White:
+                case Gameloop.Colour.White:
                     switch (this.Type)
                     {
                         case PieceType.King: return "\u2654";
@@ -108,7 +77,7 @@ namespace Chess
             };
         }
 
-        public List<(int, int)> GetPossibleMoves(Board board)
+        public List<(int,int)> GetPossibleMoves(Board board)
         {
             return moveStrategy.GetPossibleMoves(this, board);
         }
