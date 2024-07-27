@@ -78,6 +78,7 @@ namespace Chess
 
         public void displayBoard()
         {
+            bool isWhite = true;
             Console.Clear();
 
             for (int col = 0; col < 8; col++)
@@ -86,14 +87,24 @@ namespace Chess
                 {
                     if (board[row, col] == null)
                     {
-                        Console.Write(".");
+                        if (isWhite)
+                        {
+                            Console.Write(" ");
+                        }
+                        else
+                        {
+                            Console.Write("#");
+                        }
                     }
                     else
                     {
                         Console.Write(board[row, col]);
                     }
+
+                    isWhite = !isWhite;
                 }
 
+                isWhite = !isWhite;
                 Console.WriteLine();
             }
         }
