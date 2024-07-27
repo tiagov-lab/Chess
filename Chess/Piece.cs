@@ -12,7 +12,7 @@ namespace Chess
 {
     public class Piece
     {
-        public List<Piece> PieceList = new List<Piece>();
+        public static List<Piece> PieceList = new List<Piece>();
         public Position Pos { get; set; }
         public Colour Color { get; set; }
         public PieceType Type { get; set; }

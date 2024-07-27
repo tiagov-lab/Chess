@@ -12,20 +12,24 @@ namespace Chess.MovementStrategy
             // Calculate relative positions based on color
             int forwardOne = piece.Color == Piece.Colour.White ? 1 : -1;
             int forwardTwo = piece.Color == Piece.Colour.White ? 2 : -2;
-            (int, int) oneForward = (piece.Pos.X, piece.Pos.Y + forwardOne);
-            (int, int) twoForward = (piece.Pos.X, piece.Pos.Y + forwardTwo);
+
+            (int, int) oneForward = (piece.Pos.X + forwardOne, piece.Pos.Y);
+            (int, int) twoForward = (piece.Pos.X + forwardTwo, piece.Pos.Y );
             (int, int) captureLeft = (piece.Pos.X - 1, piece.Pos.Y + forwardOne);
             (int, int) captureRight = (piece.Pos.X + 1, piece.Pos.Y + forwardOne);
 
             // Check one space forward
-            if (board.IsValidPosition(oneForward.Item1, oneForward.Item2) && board[oneForward.Item2, oneForward.Item1] == null)
+            var nextPiece = board.GetPieceAt(oneForward.Item1, oneForward.Item2);
+
+            if (nextPiece == null) 
+                
             {
                 possibleMoves.Add(oneForward);
 
-                // Check two spaces forward if in starting position
+                // Check twospace forward
                 bool isStartingRank = (piece.Color == Piece.Colour.White && piece.Pos.Y == 1) ||
                                       (piece.Color == Piece.Colour.Black && piece.Pos.Y == 6);
-                if (isStartingRank && board[twoForward.Item2, twoForward.Item1] == null)
+                if (isStartingRank && board.GetPieceAt(twoForward.Item1, twoForward.Item2) == null)
                 {
                     possibleMoves.Add(twoForward);
                 }

@@ -11,6 +11,9 @@ namespace Chess
 {
     public class Board
     {
+        private string whiteTile = " ";
+        private string blackTile = "#";
+
         public Piece[,] board;
 
         public Board()
@@ -89,11 +92,11 @@ namespace Chess
                     {
                         if (isWhite)
                         {
-                            Console.Write(" ");
+                            Console.Write(whiteTile);
                         }
                         else
                         {
-                            Console.Write("#");
+                            Console.Write(blackTile);
                         }
                     }
                     else
@@ -105,15 +108,16 @@ namespace Chess
                 }
 
                 isWhite = !isWhite;
+
                 Console.WriteLine();
             }
         }
 
         public Piece? GetPieceAt(int x, int y)
         {
-            if (x < 0 || x >= 8 || y < 0 || y >= 8)
-                return null;
-            return board[y, x];
+            if (IsValidPosition(x, y))
+                return board[y, x];
+            return null;
         }
 
         public bool IsValidPosition(int x, int y)

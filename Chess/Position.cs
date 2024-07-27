@@ -16,5 +16,10 @@ namespace Chess
             this.X = inputX;
             this.Y = inputY;
         }
+
+        public override string ToString()
+        {
+            return $"{X}, {Y}";
+        }
     }
 }
