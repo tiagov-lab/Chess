@@ -35,10 +35,10 @@ namespace Chess
             // while (true) 
             {
                 // white moves
-                gameBoard.displayBoard();
+                gameBoard.DisplayBoard();
 
                 // black moves
-                gameBoard.displayBoard();
+                gameBoard.DisplayBoard();
 
                 // Checkmate or resigning break the loop
 

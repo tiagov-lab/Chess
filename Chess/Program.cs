@@ -5,4 +5,4 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 Board b = new Board();
 
-
+b.DisplayBoard();

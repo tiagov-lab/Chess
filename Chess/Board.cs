@@ -84,13 +84,39 @@ namespace Chess
             Cells[row, col].PlacePiece(
                 new Piece(new Position(col, row), color, type)
                 );
+
         }
 
         public void DisplayBoard()
         {
             Console.Clear();
 
-        
+            bool isWhite = true;
+
+            for (int x = 0; x < BoardSize; x++)
+            {
+                for (int y = 0; y < BoardSize; y++)
+                {
+                    if (Cells[x, y].isOccupied)
+                    {
+                        Console.Write(Cells[x, y].Piece);
+                    }
+                    else
+                    {
+                        if (isWhite)
+                        {
+                            Console.Write(whiteTile);
+                        }
+                        else
+                        {
+                            Console.Write(blackTile);
+                        }
+                    }
+                    isWhite = !isWhite;
+                }
+                isWhite = !isWhite;
+                Console.WriteLine();
+            }
         }
 
         public bool IsValidPosition(int row, int col)
@@ -99,4 +125,3 @@ namespace Chess
         }
     }
 }
-

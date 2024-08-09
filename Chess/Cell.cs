@@ -24,9 +24,12 @@ namespace Chess
         {
             if (isOccupied)
             {
-                
-            // Add code here for keeping track of eaten pieces
+                // Add code here for keeping track of eaten pieces
+            }
 
+            else
+            {
+                isOccupied = true;
             }
 
             Piece = inputPiece;
