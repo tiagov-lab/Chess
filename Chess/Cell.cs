@@ -10,7 +10,6 @@ namespace Chess
 {
     public class Cell
     {
-        public string ?name; // Should the cell store the name, or should the position store the name?
         public Piece ?Piece;
         public Coordinate Position;
         public bool isOccupied = false;    
@@ -39,6 +38,11 @@ namespace Chess
         {
             Piece = null;
             isOccupied = false;
+        }
+
+        public override string ToString()
+        {
+            return Position.ToString();
         }
 
     }

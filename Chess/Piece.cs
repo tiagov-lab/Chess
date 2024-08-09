@@ -34,7 +34,7 @@ namespace Chess
         {
             switch (this.Color)
             {
-                case Gameloop.Colour.White:
+                case Gameloop.Colour.White: // TR
                     switch (this.Type)
                     {
                         case Gameloop.PieceType.King: return "\u2654";
