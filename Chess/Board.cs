@@ -7,126 +7,96 @@ using System.Text;
 using System.Threading.Tasks;
 using static Chess.Piece;
 
+
 namespace Chess
 {
     public class Board
     {
-        private string whiteTile = " ";
-        private string blackTile = "#";
+        private const int BoardSize = 8;
+        private readonly string whiteTile = " ";
+        private readonly string blackTile = "#";
 
-        public Piece[,] board;
+        public Cell[,] Cells { get; private set; }
 
         public Board()
         {
-            board = new Piece[8, 8];
+            Cells = new Cell[BoardSize, BoardSize];
             InitializeBoard();
         }
 
         // Indexer
-        public Piece? this[int row, int col]
+        public Cell this[int row, int col]
         {
             get
             {
                 if (IsValidPosition(row, col))
-                    return board[row, col];
-                return null;
-            }
-            set
-            {
-                // Don't use now! Figure out a better way later
-                if (IsValidPosition(row, col))
-                    board[row, col] = value;
+                    return Cells[row, col];
+                throw new IndexOutOfRangeException("Invalid board position");
             }
         }
 
         private void InitializeBoard()
         {
+            // Initialize all cells
+            for (int row = 0; row < BoardSize; row++)
+            {
+                for (int col = 0; col < BoardSize; col++)
+                {
+                    Cells[row, col] = new Cell(row, col);
+                }
+            }
+
             // Place white pieces
-            PlacePiece(0, 0, Colour.White, PieceType.Rook);
-            PlacePiece(0, 1, Colour.White, PieceType.Knight);
-            PlacePiece(0, 2, Colour.White, PieceType.Bishop);
-            PlacePiece(0, 3, Colour.White, PieceType.Queen);
-            PlacePiece(0, 4, Colour.White, PieceType.King);
-            PlacePiece(0, 5, Colour.White, PieceType.Bishop);
-            PlacePiece(0, 6, Colour.White, PieceType.Knight);
-            PlacePiece(0, 7, Colour.White, PieceType.Rook);
+            PlacePiece(0, 0, Gameloop.Colour.White, Gameloop.PieceType.Rook);
+            PlacePiece(0, 1, Gameloop.Colour.White, Gameloop.PieceType.Knight);
+            PlacePiece(0, 2, Gameloop.Colour.White, Gameloop.PieceType.Bishop);
+            PlacePiece(0, 3, Gameloop.Colour.White, Gameloop.PieceType.Queen);
+            PlacePiece(0, 4, Gameloop.Colour.White, Gameloop.PieceType.King);
+            PlacePiece(0, 5, Gameloop.Colour.White, Gameloop.PieceType.Bishop);
+            PlacePiece(0, 6, Gameloop.Colour.White, Gameloop.PieceType.Knight);
+            PlacePiece(0, 7, Gameloop.Colour.White, Gameloop.PieceType.Rook);
 
             // Place white pawns
-            for (int col = 0; col < 8; col++)
+            for (int col = 0; col < BoardSize; col++)
             {
-                PlacePiece(1, col, Colour.White, PieceType.Pawn);
+                PlacePiece(1, col, Gameloop.Colour.White, Gameloop.PieceType.Pawn);
             }
 
             // Place black pieces
-            PlacePiece(7, 0, Colour.Black, PieceType.Rook);
-            PlacePiece(7, 1, Colour.Black, PieceType.Knight);
-            PlacePiece(7, 2, Colour.Black, PieceType.Bishop);
-            PlacePiece(0, 3, Colour.White, PieceType.Queen);
-            PlacePiece(7, 4, Colour.Black, PieceType.King);
-            PlacePiece(7, 5, Colour.Black, PieceType.Bishop);
-            PlacePiece(7, 6, Colour.Black, PieceType.Knight);
-            PlacePiece(7, 7, Colour.Black, PieceType.Rook);
+            PlacePiece(7, 0, Gameloop.Colour.Black, Gameloop.PieceType.Rook);
+            PlacePiece(7, 1, Gameloop.Colour.Black, Gameloop.PieceType.Knight);
+            PlacePiece(7, 2, Gameloop.Colour.Black, Gameloop.PieceType.Bishop);
+            PlacePiece(7, 3, Gameloop.Colour.Black, Gameloop.PieceType.Queen);
+            PlacePiece(7, 4, Gameloop.Colour.Black, Gameloop.PieceType.King);
+            PlacePiece(7, 5, Gameloop.Colour.Black, Gameloop.PieceType.Bishop);
+            PlacePiece(7, 6, Gameloop.Colour.Black, Gameloop.PieceType.Knight);
+            PlacePiece(7, 7, Gameloop.Colour.Black, Gameloop.PieceType.Rook);
 
             // Place black pawns
-            for (int col = 0; col < 8; col++)
+            for (int col = 0; col < BoardSize; col++)
             {
-                PlacePiece(6, col, Colour.Black, PieceType.Pawn);
+                PlacePiece(6, col, Gameloop.Colour.Black, Gameloop.PieceType.Pawn);
             }
         }
 
-        private void PlacePiece(int x, int y, Colour color, PieceType type)
+        private void PlacePiece(int row, int col, Gameloop.Colour color, Gameloop.PieceType type)
         {
-            board[y, x] = new Piece(new Position(x, y), color, type);
+            Cells[row, col].PlacePiece(
+                new Piece(new Position(col, row), color, type)
+                );
         }
 
-        public void displayBoard()
+        public void DisplayBoard()
         {
-            bool isWhite = true;
             Console.Clear();
 
-            for (int col = 0; col < 8; col++)
-            {
-                for (int row = 0; row < 8; row++)
-                {
-                    if (board[row, col] == null)
-                    {
-                        if (isWhite)
-                        {
-                            Console.Write(whiteTile);
-                        }
-                        else
-                        {
-                            Console.Write(blackTile);
-                        }
-                    }
-                    else
-                    {
-                        Console.Write(board[row, col]);
-                    }
-
-                    isWhite = !isWhite;
-                }
-
-                isWhite = !isWhite;
-
-                Console.WriteLine();
-            }
+        
         }
 
-        public Piece? GetPieceAt(int x, int y)
+        public bool IsValidPosition(int row, int col)
         {
-            if (IsValidPosition(x, y))
-                return board[y, x];
-            return null;
-        }
-
-        public bool IsValidPosition(int x, int y)
-        {
-            return x >= 0 && x < 8 && y >= 0 && y < 8;
+            return row >= 0 && row < BoardSize && col >= 0 && col < BoardSize;
         }
     }
 }
-
-   
-
 

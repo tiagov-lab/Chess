@@ -37,24 +37,24 @@ namespace Chess
                 case Gameloop.Colour.White:
                     switch (this.Type)
                     {
-                        case PieceType.King: return "\u2654";
-                        case PieceType.Queen: return "\u2655";
-                        case PieceType.Rook: return "\u2656";
-                        case PieceType.Bishop: return "\u2657";
-                        case PieceType.Knight: return "\u2658";
-                        case PieceType.Pawn: return "\u2659";
+                        case Gameloop.PieceType.King: return "\u2654";
+                        case Gameloop.PieceType.Queen: return "\u2655";
+                        case Gameloop.PieceType.Rook: return "\u2656";
+                        case Gameloop.PieceType.Bishop: return "\u2657";
+                        case Gameloop.PieceType.Knight: return "\u2658";
+                        case Gameloop.PieceType.Pawn: return "\u2659";
                         default: return "?";
                     }
 
-                case Colour.Black:
+                case Gameloop.Colour.Black:
                     switch (this.Type)
                     {
-                        case PieceType.King: return "\u265A";
-                        case PieceType.Queen: return "\u265B";
-                        case PieceType.Rook: return "\u265C";
-                        case PieceType.Bishop: return "\u265D";
-                        case PieceType.Knight: return "\u265E";
-                        case PieceType.Pawn: return "\u265F";
+                        case Gameloop.PieceType.King: return "\u265A";
+                        case Gameloop.PieceType.Queen: return "\u265B";
+                        case Gameloop.PieceType.Rook: return "\u265C";
+                        case Gameloop.PieceType.Bishop: return "\u265D";
+                        case Gameloop.PieceType.Knight: return "\u265E";
+                        case Gameloop.PieceType.Pawn: return "\u265F";
                         default: return "?";
                     }
 
@@ -67,12 +67,12 @@ namespace Chess
         {
             moveStrategy = Type switch
             {
-                PieceType.Pawn => new PawnMoveStrategy(),
-                PieceType.Rook => new RookMoveStrategy(),
-                PieceType.Knight => new KnightMoveStrategy(),
-                PieceType.Bishop => new BishopMoveStrategy(),
-                PieceType.Queen => new QueenMoveStrategy(),
-                PieceType.King => new KingMoveStrategy(),
+                Gameloop.PieceType.Pawn => new PawnMoveStrategy(),
+                Gameloop.PieceType.Rook => new RookMoveStrategy(),
+                Gameloop.PieceType.Knight => new KnightMoveStrategy(),
+                Gameloop.PieceType.Bishop => new BishopMoveStrategy(),
+                Gameloop.PieceType.Queen => new QueenMoveStrategy(),
+                Gameloop.PieceType.King => new KingMoveStrategy(),
                 _ => throw new ArgumentException("Unknown piece type")
             };
         }

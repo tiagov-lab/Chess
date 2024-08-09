@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess
 {
-    public class Position
+    public struct Position
     {
         public int X;
         public int Y;
