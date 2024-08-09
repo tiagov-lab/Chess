@@ -30,10 +30,10 @@ namespace Chess
             StringBuilder sb = new StringBuilder();
 
             // Turning X into letter
-            sb.Append(Convert.ToChar(96 + inputX + 1));
+            sb.Append(Convert.ToChar(97 + inputX));
 
             /// Add Y
-            sb.Append(inputY);
+            sb.Append(inputY + 1);
 
             return sb.ToString();
         }
