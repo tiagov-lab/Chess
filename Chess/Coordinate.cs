@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Chess
 {
-    public struct Position
+    public struct Coordinate
     {
         public int X;
         public int Y;
 
-        public Position(int inputX, int inputY)
+        public Coordinate(int inputX, int inputY)
         {
             this.X = inputX;
             this.Y = inputY;

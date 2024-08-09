@@ -82,7 +82,7 @@ namespace Chess
         private void PlacePiece(int row, int col, Gameloop.Colour color, Gameloop.PieceType type)
         {
             Cells[row, col].PlacePiece(
-                new Piece(new Position(col, row), color, type)
+                new Piece(new Coordinate(col, row), color, type)
                 );
 
         }

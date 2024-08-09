@@ -8,7 +8,7 @@ namespace Chess.MovementStrategy
 {
     internal class KnightMoveStrategy : IMoveStrategy
     {
-        public List<(int, int)> GetPossibleMoves(Piece piece, Board board)
+        public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
         {
             throw new NotImplementedException();
         }

@@ -12,12 +12,12 @@ namespace Chess
     {
         public string ?name; // Should the cell store the name, or should the position store the name?
         public Piece ?Piece;
-        public Position Position;
+        public Coordinate Position;
         public bool isOccupied = false;    
 
         public Cell(int inputX, int inputY)
         {
-            Position = new Position(inputX,inputY);
+            Position = new Coordinate(inputX,inputY);
         }
 
         public void PlacePiece(Piece inputPiece) 

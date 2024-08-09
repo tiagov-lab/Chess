@@ -14,14 +14,14 @@ namespace Chess
     public class Piece
     {
         public static List<Piece> PieceList = new List<Piece>();
-        public Position Pos { get; set; }
+        public Coordinate Pos { get; set; }
         public Gameloop.Colour Color { get; set; }
         public Gameloop.PieceType Type { get; set; }
 
         private IMoveStrategy moveStrategy;
 
 
-        public Piece(Position inputPosition, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
+        public Piece(Coordinate inputPosition, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
         {
             Pos = inputPosition;
             Color = inputColor;
@@ -77,7 +77,7 @@ namespace Chess
             };
         }
 
-        public List<(int,int)> GetPossibleMoves(Board board)
+        public List<Coordinate> GetPossibleMoves(Board board)
         {
             return moveStrategy.GetPossibleMoves(this, board);
         }
