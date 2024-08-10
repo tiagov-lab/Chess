@@ -20,7 +20,6 @@ namespace Chess
 
         private IMoveStrategy moveStrategy;
 
-
         public Piece(Coordinate inputPosition, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
         {
             Pos = inputPosition;

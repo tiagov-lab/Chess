@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,25 +9,32 @@ namespace Chess
 {
     public class Cell
     {
-        public Piece ?Piece;
-        public Coordinate Position;
-        public bool isOccupied = false;    
+        private Piece _piece;
+        public Coordinate Position { get; }
+
+        public Piece Piece
+        {
+            get => _piece;
+            set
+            {
+                _piece = value;
+                isOccupied = _piece != null;
+            }
+        }
+
+        public bool isOccupied { get; private set; }
 
         public Cell(int inputX, int inputY)
         {
-            Position = new Coordinate(inputX,inputY);
+            Position = new Coordinate(inputX, inputY);
+            isOccupied = false;
         }
 
-        public void PlacePiece(Piece inputPiece) 
+        public void PlacePiece(Piece inputPiece)
         {
             if (isOccupied)
             {
                 // Add code here for keeping track of eaten pieces
-            }
-
-            else
-            {
-                isOccupied = true;
             }
 
             Piece = inputPiece;
@@ -44,6 +50,5 @@ namespace Chess
         {
             return Position.ToString();
         }
-
     }
 }

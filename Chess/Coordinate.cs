@@ -8,7 +8,7 @@ namespace Chess
 {
     public struct Coordinate
     {
-        public string ?name;
+        public string name;
         public int X;
         public int Y;
 

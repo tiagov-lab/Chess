@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Chess.MovementStrategy
 {
@@ -10,7 +6,32 @@ namespace Chess.MovementStrategy
     {
         public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
         {
-            throw new NotImplementedException();
+            List<Coordinate> possibleMoves = new List<Coordinate>();
+            int x = piece.Pos.X;
+            int y = piece.Pos.Y;
+
+            // All possible knight moves
+            Coordinate[] knightMoves = new Coordinate[]
+            {
+                new Coordinate(x + 1, y + 2),
+                new Coordinate(x + 2, y + 1),
+                new Coordinate(x + 2, y - 1),
+                new Coordinate(x + 1, y - 2),
+                new Coordinate(x - 1, y - 2),
+                new Coordinate(x - 2, y - 1),
+                new Coordinate(x - 2, y + 1),
+                new Coordinate(x - 1, y + 2)
+            };
+
+            foreach (Coordinate move in knightMoves)
+            {
+                if (MoveUtils.canMoveToCell(board, piece, move))
+                {
+                    possibleMoves.Add(move);
+                }
+            }
+
+            return possibleMoves;
         }
     }
 }
