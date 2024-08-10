@@ -15,33 +15,22 @@ namespace Chess.MovementStrategy
             int x = piece.Position.X;
             int y = piece.Position.Y;
 
-            // All Bishop directions
+            // All Queen directions
             Coordinate[] bishopDirections = new Coordinate[]
             {
                 // Top left
                 new Coordinate(x - 1, y + 1),
-                // Top
-                new Coordinate(x, y + 1),
                 // Top right
                 new Coordinate(x + 1, y + 1),
-                // Left
-                new Coordinate(x - 1, y),
-                // Right
-                new Coordinate(x + 1, y),
                 // Bottom left
                 new Coordinate(x - 1, y - 1),
-                // Bottom
-                new Coordinate(x, y - 1),
                 // Bottom right
                 new Coordinate(x + 1, y - 1),
             };
 
-            foreach (Coordinate move in bishopDirections)
+            foreach (Coordinate direction in bishopDirections)
             {
-                if (MoveUtils.canMoveToCell(board, piece, move))
-                {
-                    possibleMoves.Add(move);
-                }
+                possibleMoves.AddRange(MoveUtils.getMovesInDirection(board, piece, direction));
             }
             return possibleMoves;
         }

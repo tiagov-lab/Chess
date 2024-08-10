@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 namespace Chess.MovementStrategy
 {
     internal class QueenMoveStrategy : IMoveStrategy
-    { 
-        public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
     {
-        List<Coordinate> possibleMoves = new List<Coordinate>();
-
-        int x = piece.Position.X;
-        int y = piece.Position.Y;
-
-        // All Queen directions
-        Coordinate[] queenDirections = new Coordinate[]
+        public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
         {
+            List<Coordinate> possibleMoves = new List<Coordinate>();
+
+            int x = piece.Position.X;
+            int y = piece.Position.Y;
+
+            // All Queen directions
+            Coordinate[] queenDirections = new Coordinate[]
+            {
                 // Top left
                 new Coordinate(x - 1, y + 1),
                 // Top
@@ -35,14 +35,14 @@ namespace Chess.MovementStrategy
                 new Coordinate(x, y - 1),
                 // Bottom right
                 new Coordinate(x + 1, y - 1),
-        };
+            };
 
-        foreach (Coordinate direction in queenDirections)
-        {
-           possibleMoves.AddRange(MoveUtils.getMovesInDirection(board, piece, direction));
+            foreach (Coordinate direction in queenDirections)
+            {
+                possibleMoves.AddRange(MoveUtils.getMovesInDirection(board, piece, direction));
+            }
+            return possibleMoves;
         }
-        return possibleMoves;
-    }
     }
 }
 
