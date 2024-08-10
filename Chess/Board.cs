@@ -81,7 +81,7 @@ namespace Chess
 
         private void PlacePiece(int row, int col, Gameloop.Colour color, Gameloop.PieceType type)
         {
-            Cells[row, col].PlacePiece(
+            Cells[col, row].PlacePiece(
                 new Piece(new Coordinate(col, row), color, type)
                 );
 
@@ -97,9 +97,9 @@ namespace Chess
             {
                 for (int y = 0; y < BoardSize; y++)
                 {
-                    if (Cells[x, y].isOccupied)
+                    if (Cells[y, x].isOccupied)
                     {
-                        Console.Write(Cells[x, y].Piece);
+                        Console.Write(Cells[y, x].Piece);
                     }
                     else
                     {

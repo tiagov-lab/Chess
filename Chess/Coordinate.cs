@@ -22,7 +22,7 @@ namespace Chess
 
         public override string ToString()
         {
-            return $"{X}, {Y}";
+            return $"{name}";
         }
 
         public string positionNamer(int inputX, int inputY)

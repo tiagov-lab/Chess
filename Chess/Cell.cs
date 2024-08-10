@@ -12,17 +12,17 @@ namespace Chess
         private Piece _piece;
         public Coordinate Position { get; }
 
-        public Piece Piece
+        public Piece ?Piece
         {
             get => _piece;
             set
             {
                 _piece = value;
-                isOccupied = _piece != null;
+                isOccupied = true;
             }
         }
 
-        public bool isOccupied { get; private set; }
+        public bool isOccupied { get; set; }
 
         public Cell(int inputX, int inputY)
         {
@@ -37,13 +37,14 @@ namespace Chess
                 // Add code here for keeping track of eaten pieces
             }
 
+            isOccupied = true;
             Piece = inputPiece;
         }
 
         public void RemovePiece()
         {
-            Piece = null;
             isOccupied = false;
+            Piece = null;
         }
 
         public override string ToString()

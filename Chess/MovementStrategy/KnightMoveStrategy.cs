@@ -7,8 +7,8 @@ namespace Chess.MovementStrategy
         public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
-            int x = piece.Pos.X;
-            int y = piece.Pos.Y;
+            int x = piece.Position.X;
+            int y = piece.Position.Y;
 
             // All possible knight moves
             Coordinate[] knightMoves = new Coordinate[]
@@ -25,6 +25,7 @@ namespace Chess.MovementStrategy
 
             foreach (Coordinate move in knightMoves)
             {
+
                 if (MoveUtils.canMoveToCell(board, piece, move))
                 {
                     possibleMoves.Add(move);

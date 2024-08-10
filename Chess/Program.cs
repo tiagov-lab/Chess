@@ -8,12 +8,18 @@ Board b = new Board();
 b.DisplayBoard();
 
 
-var List = b.Cells[0, 6].Piece.GetPossibleMoves(b);
+var WhiteKnights = from p in Piece.PieceList
+                   where p.Type == Gameloop.PieceType.Knight
+                   select p;
 
-foreach (var item in List)
+foreach (var p in WhiteKnights)
 {
-    Console.WriteLine(
-        (item.name)
-    );
-    
+    Console.WriteLine();
+
+    Console.WriteLine($"{p}:{p.Position}");
+    var MoveList = p.GetPossibleMoves(b);
+    foreach (var move in MoveList)
+    {
+        Console.Write($"{move} ");
+    }
 }
