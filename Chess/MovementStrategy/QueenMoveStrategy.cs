@@ -10,7 +10,10 @@ namespace Chess.MovementStrategy
     {
         public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
         {
-            throw new NotImplementedException();
+            List<Coordinate> possibleMoves = new List<Coordinate>();
+
+
+            return possibleMoves;
         }
     }
 }
