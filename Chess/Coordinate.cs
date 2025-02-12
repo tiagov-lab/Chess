@@ -29,13 +29,17 @@ namespace Chess
         {
             StringBuilder sb = new StringBuilder();
 
-            // Turning X into letter
-            sb.Append(Convert.ToChar(97 + inputX));
+            sb.Append(TurnXIntoChar(inputX));
 
-            /// Add Y
-            sb.Append(inputY + 1);
+            sb.Append((inputY + 1));   
 
             return sb.ToString();
         }
+        
+        private char TurnXIntoChar(int inputX)
+        {
+            return Convert.ToChar(97 + inputX);
+        }
+
     }
 }
