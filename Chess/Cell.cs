@@ -10,6 +10,8 @@ namespace Chess
     public class Cell
     {
         private Piece _piece;
+        private bool _isOccupied;
+
         public Coordinate Position { get; }
 
         public Piece ?Piece
@@ -22,7 +24,7 @@ namespace Chess
             }
         }
 
-        public bool isOccupied { get; set; }
+        public bool isOccupied { get => _isOccupied; set => _isOccupied = value; }
 
         public Cell(int inputX, int inputY)
         {

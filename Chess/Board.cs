@@ -113,7 +113,7 @@ namespace Chess
                         }
                     }
                     isWhite = !isWhite;
-                }
+                }.'/.'
                 isWhite = !isWhite;
                 Console.WriteLine();
             }
@@ -122,6 +122,19 @@ namespace Chess
         public bool IsValidPosition(int row, int col)
         {
             return row >= 0 && row < BoardSize && col >= 0 && col < BoardSize;
+        }
+
+        public bool IsValidPosition(Coordinate inputCoordinate)
+        {
+            return IsValidPosition(inputCoordinate.X, inputCoordinate.Y);
+        }
+
+        public void RemoveAllPieces()
+        {
+            foreach (Cell cell in Cells)
+            {
+                cell.RemovePiece();
+            }
         }
     }
 }
