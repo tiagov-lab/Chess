@@ -21,15 +21,15 @@ namespace Chess.MovementStrategy
             Coordinate[] kingMoves = new Coordinate[]
             {
                 // Top left
-                new Coordinate(x - 1, y + 1),
+                new(x - 1, y + 1),
                 // Top
-                new Coordinate(x, y + 1),
+                new(x, y + 1),
                 // Top right
-                new Coordinate(x + 1, y + 1),
+                new(x + 1, y + 1),
                 // Left
-                new Coordinate(x - 1, y),
+                new(x - 1, y),
                 // Right
-                new Coordinate(x + 1, y),
+                new(x + 1, y),
                 // Bottom left
                 new Coordinate(x - 1, y - 1),
                 // Bottom

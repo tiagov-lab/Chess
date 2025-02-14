@@ -4,48 +4,47 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Chess
 {
     public class Cell
     {
-        private Piece _piece;
-        private bool _isOccupied = false;
 
         public Coordinate Position { get; }
 
-        public Piece ?Piece
-        {
-            get => _piece;
-            set
-            {
-                _piece = value;
-                isOccupied = true;
-            }
-        }
+        public Piece? Piece = null;
 
-        public bool isOccupied { get => _isOccupied; set => _isOccupied = value; }
+        public bool isOccupied()
+        {
+            if (Piece == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+        }
 
         public Cell(int inputX, int inputY)
         {
             Position = new Coordinate(inputX, inputY);
-            isOccupied = false;
         }
 
         public void PlacePiece(Piece inputPiece)
         {
-            if (isOccupied)
+            if (isOccupied())
             {
                 // Add code here for keeping track of eaten pieces
             }
 
-            isOccupied = true;
             Piece = inputPiece;
         }
 
         public void RemovePiece()
         {
-            isOccupied = false;
             Piece = null;
         }
 

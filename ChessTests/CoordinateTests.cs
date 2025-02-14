@@ -38,7 +38,7 @@ public class CoordinateTests
     {
         // Arrange
         var TestCoordinate = new Coordinate(0, 7);
-        var CorrectName = "a8";
+        string CorrectName = "a8";
 
         // Act
         var InputName = TestCoordinate.name;

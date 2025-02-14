@@ -61,6 +61,8 @@ namespace Chess
 
         public List<Coordinate> GetPossibleMoves(Board board)
         {
+            if (moveStrategy == null)
+                throw new InvalidOperationException("Move strategy not set");
             return moveStrategy.GetPossibleMoves(this, board);
         }
     }

@@ -91,7 +91,7 @@ namespace Chess
             {
                 for (int y = 0; y < BoardSize; y++)
                 {
-                    if (Cells[y, x].isOccupied)
+                    if (Cells[y, x].isOccupied())
                     {
                         Console.Write(Cells[y, x].Piece);
                     }

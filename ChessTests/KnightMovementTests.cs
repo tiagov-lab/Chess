@@ -7,7 +7,7 @@ public class KnightMovementTests
 {
 
     [TestMethod]
-    public void KnightInCenter_ShouldHaveEightPossibleMoves()
+    public void Test_KnightInCenter_ShouldHaveEightPossibleMoves()
     {
         // Arrange
         Board testBoard = new Board();
@@ -19,5 +19,20 @@ public class KnightMovementTests
 
         // Assert
         Assert.AreEqual(8, possibleMoves.Count);
+    }
+
+    [TestMethod]
+    public void Test_KnightInCenter_CanMoveMultipleTimes()
+    {
+        // Arrange
+        Board testBoard = new Board();
+        testBoard.RemoveAllPieces();
+        var knight = new Piece(new Coordinate(3, 3), Gameloop.Colour.White, Gameloop.PieceType.Knight);
+
+        // Act
+        
+
+        // Assert
+        
     }
 }

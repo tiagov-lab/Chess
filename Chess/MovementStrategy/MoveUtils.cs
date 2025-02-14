@@ -11,7 +11,7 @@ public static class MoveUtils
     {
         removePieceFromCurrentCell(inputBoard, inputPiece, inputCoordinate);
         addPieceToNewCell(inputBoard, inputPiece, inputCoordinate);
-        updatePiecesPosition(inputPiece, inputCoordinate); // Does this belong to the piece class?
+        updatePiecesPosition(inputPiece, inputCoordinate);
     }
     
     private static void removePieceFromCurrentCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
@@ -40,7 +40,7 @@ public static class MoveUtils
         {
             Cell movingToCell = inputBoard.Cells[inputCoordinate.X, inputCoordinate.Y];
 
-            if (movingToCell.isOccupied)
+            if (movingToCell.isOccupied())
             {
                 if (movingToCell.Piece != null)
                 {
@@ -56,7 +56,6 @@ public static class MoveUtils
     }
 
  
-
 
     public static List<Coordinate> getMovesInDirection(Board inputBoard, Piece inputPiece, Coordinate inputDirection)
     {
