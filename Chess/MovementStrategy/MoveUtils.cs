@@ -55,8 +55,6 @@ public static class MoveUtils
         return true;
     }
 
- 
-
     public static List<Coordinate> getMovesInDirection(Board inputBoard, Piece inputPiece, Coordinate inputDirection)
     {
         // Helper method for pieces that can move indefinitelty in one direction (Queen, Bishop and Rook)
@@ -93,5 +91,20 @@ public static class MoveUtils
 
         return possibleMoves;
     }
+
+    public static Coordinate getRandomMove(Board inputBoard, Piece inputPiece)
+    {
+        var random = new Random();
+        var possibleMoves = inputPiece.GetPossibleMoves(inputBoard);
+        var randomMoveIndex = random.Next(possibleMoves.Count);
+
+        return possibleMoves[randomMoveIndex];
+    }
+
+    public static void moveRandomly(Board inputBoard, Piece inputPiece)
+    {
+        movePiece(inputBoard, inputPiece, getRandomMove(inputBoard, inputPiece));
+    }
+
 }
 
