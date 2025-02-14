@@ -18,7 +18,7 @@ namespace Chess
         public Gameloop.Colour Color { get; set; }
         public Gameloop.PieceType Type { get; set; }
 
-        private IMoveStrategy moveStrategy;
+        private IMoveStrategy ?moveStrategy;
 
         public Piece(Coordinate inputPosition, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
         {
@@ -42,7 +42,7 @@ namespace Chess
                 _ => "?"
             };
 
-            return Color == Gameloop.Colour.White ? pieceNotation.ToUpper() : pieceNotation.ToLower();
+            return Color == Gameloop.Colour.White ? pieceNotation.ToUpper() : pieceNotation.ToLower(); // tf is this
         }
 
         private void SetMoveStrategy()

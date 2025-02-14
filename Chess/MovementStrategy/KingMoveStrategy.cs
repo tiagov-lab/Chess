@@ -51,7 +51,7 @@ namespace Chess.MovementStrategy
             return possibleMoves;
         }
 
-        private List<Coordinate> GetEnemyPossibleMoves(Piece piece, Board inputBoard)
+        private List<Coordinate> GetEnemyPossibleMoves(Piece piece, Board inputBoard) // should it moved to MoveUtils?
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
 
