@@ -14,7 +14,7 @@ namespace Chess
     public class Piece
     {
         public static List<Piece> PieceList = new List<Piece>();
-        public Coordinate Position { get; set; }
+        public Coordinate Coordinate { get; set; }
         public Gameloop.Colour Color { get; set; }
         public Gameloop.PieceType Type { get; set; }
 
@@ -22,7 +22,7 @@ namespace Chess
 
         public Piece(Coordinate inputPosition, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
         {
-            Position = inputPosition;
+            Coordinate = inputPosition;
             Color = inputColor;
             Type = inputType;
             PieceList.Add(this);

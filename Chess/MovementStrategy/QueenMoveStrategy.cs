@@ -13,8 +13,8 @@ namespace Chess.MovementStrategy
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
 
-            int x = piece.Position.X;
-            int y = piece.Position.Y;
+            int x = piece.Coordinate.X;
+            int y = piece.Coordinate.Y;
 
             // All Queen directions
             Coordinate[] queenDirections = new Coordinate[]

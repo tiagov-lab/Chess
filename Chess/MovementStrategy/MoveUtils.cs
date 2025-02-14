@@ -16,7 +16,7 @@ public static class MoveUtils
     
     private static void removePieceFromCurrentCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
     {
-        inputBoard.Cells[inputPiece.Position.X, inputPiece.Position.Y].RemovePiece();
+        inputBoard.Cells[inputPiece.Coordinate.X, inputPiece.Coordinate.Y].RemovePiece();
     }
 
     private static void addPieceToNewCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
@@ -26,7 +26,7 @@ public static class MoveUtils
 
     private static void updatePiecesPosition(Piece inputPiece, Coordinate inputCoordinate)
     {
-        inputPiece.Position = inputCoordinate;
+        inputPiece.Coordinate = inputCoordinate;
     }
 
 
@@ -62,8 +62,8 @@ public static class MoveUtils
         // (x, y + 1)  as input would search for all spaces upwads, (x, y - 1) downwards, etc.
 
         List<Coordinate> possibleMoves = new List<Coordinate>();
-        int currentX = inputPiece.Position.X;
-        int currentY = inputPiece.Position.Y;
+        int currentX = inputPiece.Coordinate.X;
+        int currentY = inputPiece.Coordinate.Y;
         int moveCounter = 0;
 
         while (moveCounter < Board.BoardSize)

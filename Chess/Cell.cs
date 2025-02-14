@@ -11,7 +11,7 @@ namespace Chess
     public class Cell
     {
 
-        public Coordinate Position { get; }
+        public Coordinate Coordinate { get; }
 
         public Piece? Piece = null;
 
@@ -30,7 +30,7 @@ namespace Chess
 
         public Cell(int inputX, int inputY)
         {
-            Position = new Coordinate(inputX, inputY);
+            Coordinate = new Coordinate(inputX, inputY);
         }
 
         public void PlacePiece(Piece inputPiece)
@@ -59,7 +59,7 @@ namespace Chess
 
         public override string ToString()
         {
-            return Position.ToString();
+            return Coordinate.ToString();
         }
     }
 }

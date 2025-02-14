@@ -13,8 +13,8 @@ namespace Chess.MovementStrategy
             List<Coordinate> possibleMoves = new List<Coordinate>();
             List<Coordinate> enemyPossibleMoves = GetEnemyPossibleMoves(piece, board);
 
-            int x = piece.Position.X;
-            int y = piece.Position.Y;
+            int x = piece.Coordinate.X;
+            int y = piece.Coordinate.Y;
 
 
             // All possible king moves
