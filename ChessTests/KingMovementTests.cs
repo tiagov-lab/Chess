@@ -29,15 +29,6 @@ public class KingMovementTests
     [TestMethod]
     public void Tests_King_CannotMoveToCheck()
     {
-        // Arrange
-        Board testBoard = new Board();
-        testBoard.RemoveAllPieces();
-        var king = new Piece(new Coordinate(3, 3), Gameloop.Colour.White, Gameloop.PieceType.King);
-        var rook1 = new Piece(new Coordinate(3, 3), Gameloop.Colour.Black, Gameloop.PieceType.Rook); // Need to think of more descriptive names
-        var rook2 = new Piece(new Coordinate(3, 3), Gameloop.Colour.Black, Gameloop.PieceType.Rook);
 
-        // Act
-
-        // Assert
     }
 }

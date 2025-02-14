@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,17 +70,16 @@ namespace Chess
             }
         }
 
-        private void PlacePiece(int row, int col, Gameloop.Colour color, Gameloop.PieceType type)
+        public void PlacePiece(int row, int col, Gameloop.Colour color, Gameloop.PieceType type)
         {
             Cells[col, row].PlacePiece(
                 new Piece(new Coordinate(col, row), color, type)
                 );
-
         }
 
-        private void PlacePiece(Coordinate inputCoordinate, Piece inputPiece)
+        private void PlacePiece(Coordinate inputCoordinate, Piece inputPiece) // New!!
         {
-
+            Cells[inputCoordinate.X, inputCoordinate.Y].PlacePiece(inputPiece);
         }
 
         public void DisplayBoard()
