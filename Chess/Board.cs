@@ -35,6 +35,16 @@ namespace Chess
             }
         }
 
+        public Cell this[Coordinate inputCoordinate]
+        {
+            get
+            {
+                if (IsValidPosition(inputCoordinate.X, inputCoordinate.Y))
+                    return Cells[inputCoordinate.X, inputCoordinate.Y];
+                throw new IndexOutOfRangeException("Invalid board position");
+            }
+        }
+
         private void InitializeBoard()
         {
             // Initialize all cells
@@ -87,6 +97,11 @@ namespace Chess
 
         }
 
+        private void PlacePiece(Coordinate inputCoordinate, Piece inputPiece)
+        {
+
+        }
+
         public void DisplayBoard()
         {
             Console.Clear();
@@ -113,7 +128,7 @@ namespace Chess
                         }
                     }
                     isWhite = !isWhite;
-                }.'/.'
+                }
                 isWhite = !isWhite;
                 Console.WriteLine();
             }
@@ -121,7 +136,11 @@ namespace Chess
 
         public bool IsValidPosition(int row, int col)
         {
-            return row >= 0 && row < BoardSize && col >= 0 && col < BoardSize;
+            return 
+                row >= 0 && 
+                row < BoardSize && 
+                col >= 0 && 
+                col < BoardSize;
         }
 
         public bool IsValidPosition(Coordinate inputCoordinate)

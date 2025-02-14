@@ -10,7 +10,7 @@ namespace Chess
     public class Cell
     {
         private Piece _piece;
-        private bool _isOccupied;
+        private bool _isOccupied = false;
 
         public Coordinate Position { get; }
 

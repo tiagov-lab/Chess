@@ -9,19 +9,31 @@ public static class MoveUtils
 {
     public static void movePiece(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
     {
-        // Remove Piece from current cell 
+        removePieceFromCurrentCell(inputBoard, inputPiece, inputCoordinate);
+        addPieceToNewCell(inputBoard, inputPiece, inputCoordinate);
+        updatePiecesPosition(inputPiece, inputCoordinate); // Does this belong to the piece class?
+    }
+    
+    private static void removePieceFromCurrentCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
+    {
         inputBoard.Cells[inputPiece.Position.X, inputPiece.Position.Y].RemovePiece();
+    }
 
-        // Add Piece to new cell
+    private static void addPieceToNewCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
+    {
         inputBoard.Cells[inputCoordinate.X, inputCoordinate.Y].PlacePiece(inputPiece);
-        
-        // Update Pieces position
+    }
+
+    private static void updatePiecesPosition(Piece inputPiece, Coordinate inputCoordinate)
+    {
         inputPiece.Position = inputCoordinate;
     }
+
+
     public static bool canMoveToCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
     {
         // This needs to be checked before the inputCoordinate is searched in the board to avoid error.
-        if (!inputBoard.IsValidPosition(inputCoordinate.X, inputCoordinate.Y))
+        if (!inputBoard.IsValidPosition(inputCoordinate))
         {
             return false;
         }
@@ -55,7 +67,7 @@ public static class MoveUtils
             currentY += inputDirection.Y;
             Coordinate newPosition = new Coordinate(currentX, currentY);
 
-            if (!inputBoard.IsValidPosition(newPosition.X, newPosition.Y))
+            if (!inputBoard.IsValidPosition(newPosition))
             {
                 break;
             }
