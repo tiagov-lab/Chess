@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using static Chess.Piece;
@@ -12,9 +13,9 @@ namespace Chess
 {
     public class Board
     {
-        private const int BoardSize = 8;
-        private readonly string whiteTile = " ";
-        private readonly string blackTile = "#";
+        public const int BoardSize = 8;
+        private readonly string whiteTile = "█";
+        private readonly string blackTile = "░";
 
         public Cell[,] Cells { get; private set; }
 
@@ -83,8 +84,7 @@ namespace Chess
 
         public void DisplayBoard()
         {
-            Console.Clear();
-
+            StringBuilder boardDisplay = new StringBuilder();
             bool isWhite = true;
 
             for (int x = 0; x < BoardSize; x++)
@@ -93,24 +93,19 @@ namespace Chess
                 {
                     if (Cells[y, x].isOccupied())
                     {
-                        Console.Write(Cells[y, x].Piece);
+                        boardDisplay.Append(Cells[y, x].Piece);
                     }
                     else
                     {
-                        if (isWhite)
-                        {
-                            Console.Write(whiteTile);
-                        }
-                        else
-                        {
-                            Console.Write(blackTile);
-                        }
+                        boardDisplay.Append(isWhite ? whiteTile : blackTile);
                     }
                     isWhite = !isWhite;
                 }
                 isWhite = !isWhite;
-                Console.WriteLine();
+                boardDisplay.AppendLine();
             }
+
+            Console.Write(boardDisplay.ToString());
         }
 
         public bool IsValidPosition(int row, int col)

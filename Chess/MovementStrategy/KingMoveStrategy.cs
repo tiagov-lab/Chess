@@ -60,6 +60,11 @@ namespace Chess.MovementStrategy
                 where p.Color != piece.Color
                 select p;
 
+            if (EnemyPieces.Count() == 0)
+            {
+                return possibleMoves;
+            }
+
             foreach (var p in EnemyPieces)
             {
                 var tempMoves = p.GetPossibleMoves(inputBoard);

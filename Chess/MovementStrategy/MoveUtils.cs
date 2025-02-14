@@ -66,8 +66,9 @@ public static class MoveUtils
         List<Coordinate> possibleMoves = new List<Coordinate>();
         int currentX = inputPiece.Position.X;
         int currentY = inputPiece.Position.Y;
+        int moveCounter = 0;
 
-        while (true)
+        while (moveCounter < Board.BoardSize)
         {
             currentX += inputDirection.X;
             currentY += inputDirection.Y;
@@ -86,6 +87,8 @@ public static class MoveUtils
             {
                 break;
             }
+
+            moveCounter++;
         }
 
         return possibleMoves;

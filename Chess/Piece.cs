@@ -65,5 +65,10 @@ namespace Chess
                 throw new InvalidOperationException("Move strategy not set");
             return moveStrategy.GetPossibleMoves(this, board);
         }
+
+        public void Die() // Need to think of a better name
+        {
+            PieceList.Remove(this);
+        }
     }
 }

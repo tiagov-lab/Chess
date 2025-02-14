@@ -45,7 +45,16 @@ namespace Chess
 
         public void RemovePiece()
         {
-            Piece = null;
+            if (Piece == null)
+            {
+
+            }
+            else
+            {
+                Piece.Die();
+                Piece = null;
+            }
+
         }
 
         public override string ToString()
