@@ -12,7 +12,6 @@ public class KnightMovementTests
         // Arrange
         Board testBoard = new Board();
         testBoard.RemoveAllPieces();
-
         var knight = new Piece(new Coordinate(3, 3), Gameloop.Colour.White, Gameloop.PieceType.Knight);
 
         // Act

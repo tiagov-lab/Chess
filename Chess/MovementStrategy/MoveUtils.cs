@@ -32,7 +32,6 @@ public static class MoveUtils
 
     public static bool canMoveToCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
     {
-        // This needs to be checked before the inputCoordinate is searched in the board to avoid error.
         if (!inputBoard.IsValidPosition(inputCoordinate))
         {
             return false;
@@ -41,16 +40,24 @@ public static class MoveUtils
         {
             Cell movingToCell = inputBoard.Cells[inputCoordinate.X, inputCoordinate.Y];
 
-            // If the cell is occupied by a piece of the same color, return false
-            if (movingToCell.isOccupied && movingToCell.Piece.Color == inputPiece.Color)
+            if (movingToCell.isOccupied)
             {
-                return false;
+                if (movingToCell.Piece != null)
+                {
+                    if (movingToCell.Piece.Color == inputPiece.Color)
+                    {
+                        return false;
+                    }
+                }
             }
         }
 
-        // The move is valid if the cell is empty or occupied by an opponent's piece
         return true;
     }
+
+ 
+
+
     public static List<Coordinate> getMovesInDirection(Board inputBoard, Piece inputPiece, Coordinate inputDirection)
     {
         // Helper method for pieces that can move indefinitelty in one direction (Queen, Bishop and Rook)

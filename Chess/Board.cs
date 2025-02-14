@@ -24,27 +24,6 @@ namespace Chess
             InitializeBoard();
         }
 
-        // Indexer
-        public Cell this[int row, int col]
-        {
-            get
-            {
-                if (IsValidPosition(row, col))
-                    return Cells[row, col];
-                throw new IndexOutOfRangeException("Invalid board position");
-            }
-        }
-
-        public Cell this[Coordinate inputCoordinate]
-        {
-            get
-            {
-                if (IsValidPosition(inputCoordinate.X, inputCoordinate.Y))
-                    return Cells[inputCoordinate.X, inputCoordinate.Y];
-                throw new IndexOutOfRangeException("Invalid board position");
-            }
-        }
-
         private void InitializeBoard()
         {
             // Initialize all cells
