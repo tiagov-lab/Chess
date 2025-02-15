@@ -8,7 +8,7 @@ namespace Chess.MovementStrategy
 {
     internal class RookMoveStrategy : IMoveStrategy
     {
-        public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
+        public List<Coordinate> GetPossibleMoves(Piece piece)
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
 
@@ -30,7 +30,7 @@ namespace Chess.MovementStrategy
 
             foreach (Coordinate direction in rookDirections)
             {
-                possibleMoves.AddRange(MoveUtils.getMovesInDirection(board, piece, direction));
+                possibleMoves.AddRange(MoveUtils.getMovesInDirection(this, direction));
             }
             return possibleMoves;
         }

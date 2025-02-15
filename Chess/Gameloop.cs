@@ -27,20 +27,20 @@ namespace Chess
         public static void Start()
         {
             // Init board
-            Board gameBoard = new Board();
+            //Board gameBoard = new Board();
 
-            // Create players?
+            //// Create players?
             
-            //
-            // while (true) 
-            {
-                // white moves
-                gameBoard.DisplayBoard();
+            ////
+            //// while (true) 
+            //{
+            //    // white moves
+            //    gameBoard.DisplayBoard();
 
-                // black moves
-                gameBoard.DisplayBoard();
+            //    // black moves
+            //    gameBoard.DisplayBoard();
 
-                // Checkmate or resigning break the loop
+            //    // Checkmate or resigning break the loop
 
             }
 

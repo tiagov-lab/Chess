@@ -11,8 +11,6 @@ namespace Chess
     public class Cell
     {
 
-        public Coordinate Coordinate { get; }
-
         public Piece? Piece = null;
 
         public bool isOccupied()
@@ -28,9 +26,9 @@ namespace Chess
             
         }
 
-        public Cell(int inputX, int inputY)
+        public Cell()
         {
-            Coordinate = new Coordinate(inputX, inputY);
+
         }
 
         public void PlacePiece(Piece inputPiece)

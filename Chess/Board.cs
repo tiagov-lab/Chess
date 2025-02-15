@@ -1,132 +1,149 @@
-﻿using Chess;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using static Chess.Piece;
-
-
-namespace Chess
+﻿namespace Chess
 {
     public class Board
     {
         public const int BoardSize = 8;
-        private readonly string whiteTile = "█";
-        private readonly string blackTile = "░";
 
-        public Cell[,] Cells { get; private set; }
+        private static Dictionary<Coordinate, Cell> CellDict = new()
+{
+    { new Coordinate(1, 1), new Cell() },
+    { new Coordinate(1, 2), new Cell() },
+    { new Coordinate(1, 3), new Cell() },
+    { new Coordinate(1, 4), new Cell() },
+    { new Coordinate(1, 5), new Cell() },
+    { new Coordinate(1, 6), new Cell() },
+    { new Coordinate(1, 7), new Cell() },
+    { new Coordinate(1, 8), new Cell() },
+
+    { new Coordinate(2, 1), new Cell() },
+    { new Coordinate(2, 2), new Cell() },
+    { new Coordinate(2, 3), new Cell() },
+    { new Coordinate(2, 4), new Cell() },
+    { new Coordinate(2, 5), new Cell() },
+    { new Coordinate(2, 6), new Cell() },
+    { new Coordinate(2, 7), new Cell() },
+    { new Coordinate(2, 8), new Cell() },
+
+    { new Coordinate(3, 1), new Cell() },
+    { new Coordinate(3, 2), new Cell() },
+    { new Coordinate(3, 3), new Cell() },
+    { new Coordinate(3, 4), new Cell() },
+    { new Coordinate(3, 5), new Cell() },
+    { new Coordinate(3, 6), new Cell() },
+    { new Coordinate(3, 7), new Cell() },
+    { new Coordinate(3, 8), new Cell() },
+
+    { new Coordinate(4, 1), new Cell() },
+    { new Coordinate(4, 2), new Cell() },
+    { new Coordinate(4, 3), new Cell() },
+    { new Coordinate(4, 4), new Cell() },
+    { new Coordinate(4, 5), new Cell() },
+    { new Coordinate(4, 6), new Cell() },
+    { new Coordinate(4, 7), new Cell() },
+    { new Coordinate(4, 8), new Cell() },
+
+    { new Coordinate(5, 1), new Cell() },
+    { new Coordinate(5, 2), new Cell() },
+    { new Coordinate(5, 3), new Cell() },
+    { new Coordinate(5, 4), new Cell() },
+    { new Coordinate(5, 5), new Cell() },
+    { new Coordinate(5, 6), new Cell() },
+    { new Coordinate(5, 7), new Cell() },
+    { new Coordinate(5, 8), new Cell() },
+
+    { new Coordinate(6, 1), new Cell() },
+    { new Coordinate(6, 2), new Cell() },
+    { new Coordinate(6, 3), new Cell() },
+    { new Coordinate(6, 4), new Cell() },
+    { new Coordinate(6, 5), new Cell() },
+    { new Coordinate(6, 6), new Cell() },
+    { new Coordinate(6, 7), new Cell() },
+    { new Coordinate(6, 8), new Cell() },
+
+    { new Coordinate(7, 1), new Cell() },
+    { new Coordinate(7, 2), new Cell() },
+    { new Coordinate(7, 3), new Cell() },
+    { new Coordinate(7, 4), new Cell() },
+    { new Coordinate(7, 5), new Cell() },
+    { new Coordinate(7, 6), new Cell() },
+    { new Coordinate(7, 7), new Cell() },
+    { new Coordinate(7, 8), new Cell() },
+
+    { new Coordinate(8, 1), new Cell() },
+    { new Coordinate(8, 2), new Cell() },
+    { new Coordinate(8, 3), new Cell() },
+    { new Coordinate(8, 4), new Cell() },
+    { new Coordinate(8, 5), new Cell() },
+    { new Coordinate(8, 6), new Cell() },
+    { new Coordinate(8, 7), new Cell() },
+    { new Coordinate(8, 8), new Cell() }
+};
+
+        public void setPiece(Coordinate inputCoordinate, Piece inputPiece)
+        {
+            if (IsValidPosition(inputCoordinate))
+            {
+                CellDict[inputCoordinate].PlacePiece(inputPiece);
+            }
+            else
+            {
+                throw new InvalidCoordinateException(inputCoordinate);
+            }
+        }
+
+        public Piece getPiece(Coordinate inputCoordinate)
+        {
+            if (IsValidPosition(inputCoordinate))
+            {
+                return CellDict[inputCoordinate].Piece;
+            }
+            else
+            {
+                throw new InvalidCoordinateException(inputCoordinate);
+            }
+        }
 
         public Board()
         {
-            Cells = new Cell[BoardSize, BoardSize];
-            InitializeBoard();
+            InitCellDict();
+
+
         }
 
-        private void InitializeBoard()
+        public static void InitCellDict()
         {
-            // Initialize all cells
-            for (int row = 0; row < BoardSize; row++)
+            for (int x = 1; x < BoardSize + 1; x++)
             {
-                for (int col = 0; col < BoardSize; col++)
+                for (int y = 1; y < BoardSize + 1; y++)
                 {
-                    Cells[row, col] = new Cell(row, col);
+                    CellDict[new Coordinate(x, y)] = new Cell();
                 }
             }
-
-            // Place white pieces
-            PlacePiece(0, 0, Gameloop.Colour.White, Gameloop.PieceType.Rook);
-            PlacePiece(0, 1, Gameloop.Colour.White, Gameloop.PieceType.Knight);
-            PlacePiece(0, 2, Gameloop.Colour.White, Gameloop.PieceType.Bishop);
-            PlacePiece(0, 3, Gameloop.Colour.White, Gameloop.PieceType.Queen);
-            PlacePiece(0, 4, Gameloop.Colour.White, Gameloop.PieceType.King);
-            PlacePiece(0, 5, Gameloop.Colour.White, Gameloop.PieceType.Bishop);
-            PlacePiece(0, 6, Gameloop.Colour.White, Gameloop.PieceType.Knight);
-            PlacePiece(0, 7, Gameloop.Colour.White, Gameloop.PieceType.Rook);
-
-            // Place white pawns
-            for (int col = 0; col < BoardSize; col++)
-            {
-                PlacePiece(1, col, Gameloop.Colour.White, Gameloop.PieceType.Pawn);
-            }
-
-            // Place black pieces
-            PlacePiece(7, 0, Gameloop.Colour.Black, Gameloop.PieceType.Rook);
-            PlacePiece(7, 1, Gameloop.Colour.Black, Gameloop.PieceType.Knight);
-            PlacePiece(7, 2, Gameloop.Colour.Black, Gameloop.PieceType.Bishop);
-            PlacePiece(7, 3, Gameloop.Colour.Black, Gameloop.PieceType.Queen);
-            PlacePiece(7, 4, Gameloop.Colour.Black, Gameloop.PieceType.King);
-            PlacePiece(7, 5, Gameloop.Colour.Black, Gameloop.PieceType.Bishop);
-            PlacePiece(7, 6, Gameloop.Colour.Black, Gameloop.PieceType.Knight);
-            PlacePiece(7, 7, Gameloop.Colour.Black, Gameloop.PieceType.Rook);
-
-            // Place black pawns
-            for (int col = 0; col < BoardSize; col++)
-            {
-                PlacePiece(6, col, Gameloop.Colour.Black, Gameloop.PieceType.Pawn);
-            }
         }
 
-        public void PlacePiece(int row, int col, Gameloop.Colour color, Gameloop.PieceType type)
+        private void InitializeBoardPieces()
         {
-            Cells[col, row].PlacePiece(
-                new Piece(new Coordinate(col, row), color, type)
-                );
+
         }
 
-        private void PlacePiece(Coordinate inputCoordinate, Piece inputPiece) // New!!
-        {
-            Cells[inputCoordinate.X, inputCoordinate.Y].PlacePiece(inputPiece);
-        }
-
-        public void DisplayBoard()
-        {
-            StringBuilder boardDisplay = new StringBuilder();
-            bool isWhite = true;
-
-            for (int x = 0; x < BoardSize; x++)
-            {
-                for (int y = 0; y < BoardSize; y++)
-                {
-                    if (Cells[y, x].isOccupied())
-                    {
-                        boardDisplay.Append(Cells[y, x].Piece);
-                    }
-                    else
-                    {
-                        boardDisplay.Append(isWhite ? whiteTile : blackTile);
-                    }
-                    isWhite = !isWhite;
-                }
-                isWhite = !isWhite;
-                boardDisplay.AppendLine();
-            }
-
-            Console.Write(boardDisplay.ToString());
-        }
-
-        public bool IsValidPosition(int row, int col)
-        {
-            return 
-                row >= 0 && 
-                row < BoardSize && 
-                col >= 0 && 
-                col < BoardSize;
-        }
 
         public bool IsValidPosition(Coordinate inputCoordinate)
         {
-            return IsValidPosition(inputCoordinate.X, inputCoordinate.Y);
+            if (CellDict.ContainsKey(inputCoordinate))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void RemoveAllPieces()
         {
-            foreach (Cell cell in Cells)
+            foreach (var Key in CellDict.Keys)
             {
-                cell.RemovePiece();
+                CellDict[Key].RemovePiece();
             }
         }
     }
