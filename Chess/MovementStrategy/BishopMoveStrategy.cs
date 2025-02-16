@@ -8,7 +8,7 @@ namespace Chess.MovementStrategy
 {
     internal class BishopMoveStrategy : IMoveStrategy
     {
-        public List<Coordinate> GetPossibleMoves(Piece piece, Coordinate inputCoordinate)
+        public List<Coordinate> GetPossibleMoves(Board inputBoard, Piece piece, Coordinate inputCoordinate)
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
 
@@ -30,7 +30,7 @@ namespace Chess.MovementStrategy
 
             foreach (Coordinate direction in bishopDirections)
             {
-                possibleMoves.AddRange(MoveUtils.getMovesInDirection(board, piece, direction));
+                possibleMoves.AddRange(MoveUtils.GetMovesInDirection(inputBoard, piece, direction));
             }
             return possibleMoves;
         }

@@ -20,9 +20,9 @@ namespace Chess
 
         private IMoveStrategy ?moveStrategy;
 
-        public Piece(Coordinate inputPosition, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
+        public Piece(Coordinate inputCoordinate, Gameloop.Colour inputColor, Gameloop.PieceType inputType)
         {
-            Coordinate = inputPosition;
+            Coordinate = inputCoordinate;
             Color = inputColor;
             Type = inputType;
             PieceList.Add(this);
@@ -59,11 +59,11 @@ namespace Chess
             };
         }
 
-        public List<Coordinate> GetPossibleMoves(Board board)
+        public List<Coordinate> GetPossibleMoves(Board inputBoard, Coordinate inputCoordinate, Piece inputPiece)
         {
             if (moveStrategy == null)
                 throw new InvalidOperationException("Move strategy not set");
-            return moveStrategy.GetPossibleMoves(this, board);
+            return moveStrategy.GetPossibleMoves(inputBoard, inputCoordinate, inputPiece);
         }
 
         public void Die() // Need to think of a better name

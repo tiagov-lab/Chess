@@ -7,30 +7,29 @@ using System.Threading.Tasks;
 
 public static class MoveUtils
 {
-    public static void movePiece(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
+    public static void MovePiece(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
     {
-        removePieceFromCurrentCell(inputBoard, inputPiece, inputCoordinate);
-        addPieceToNewCell(inputBoard, inputPiece, inputCoordinate);
-        updatePiecesPosition(inputPiece, inputCoordinate);
+        AddPieceToNewCell(inputBoard, inputPiece, inputCoordinate);
+        RemovePieceFromCurrentCell(inputBoard, inputCoordinate);
+        UpdatePiecesCoordinate(inputPiece, inputCoordinate);
     }
-    
-    private static void removePieceFromCurrentCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
+    private static void AddPieceToNewCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
     {
-        inputBoard.Cells[inputPiece.Coordinate.X, inputPiece.Coordinate.Y].RemovePiece();
-    }
-
-    private static void addPieceToNewCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
-    {
-        inputBoard.Cells[inputCoordinate.X, inputCoordinate.Y].PlacePiece(inputPiece);
+        inputBoard.SetPiece(inputCoordinate, inputPiece);
     }
 
-    private static void updatePiecesPosition(Piece inputPiece, Coordinate inputCoordinate)
+    private static void RemovePieceFromCurrentCell(Board inputBoard, Coordinate inputCoordinate)
+    {
+        inputBoard.RemovePiece(inputCoordinate);
+    }
+
+    private static void UpdatePiecesCoordinate(Piece inputPiece, Coordinate inputCoordinate)
     {
         inputPiece.Coordinate = inputCoordinate;
     }
 
 
-    public static bool canMoveToCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
+    public static bool CanMoveToCell(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate)
     {
         if (!inputBoard.IsValidPosition(inputCoordinate))
         {
@@ -38,7 +37,7 @@ public static class MoveUtils
         }
         else
         {
-            Cell movingToCell = inputBoard.Cells[inputCoordinate.X, inputCoordinate.Y];
+            Cell movingToCell = inputBoard.GetCell(inputCoordinate);
 
             if (movingToCell.isOccupied())
             {
@@ -55,7 +54,7 @@ public static class MoveUtils
         return true;
     }
 
-    public static List<Coordinate> getMovesInDirection(Board inputBoard, Piece inputPiece, Coordinate inputDirection)
+    public static List<Coordinate> GetMovesInDirection(Board inputBoard, Piece inputPiece, Coordinate inputDirection)
     {
         // Helper method for pieces that can move indefinitelty in one direction (Queen, Bishop and Rook)
         // Takes in one direction as a Coordinate and searches continously.
@@ -77,7 +76,7 @@ public static class MoveUtils
                 break;
             }
 
-            if (canMoveToCell(inputBoard, inputPiece, newPosition))
+            if (CanMoveToCell(inputBoard, inputPiece, newPosition))
             {
                 possibleMoves.Add(newPosition);
             }
@@ -92,18 +91,18 @@ public static class MoveUtils
         return possibleMoves;
     }
 
-    public static Coordinate getRandomMove(Board inputBoard, Piece inputPiece)
+    public static Coordinate GetRandomMove(Board inputBoard, Piece inputPiece)
     {
         var random = new Random();
-        var possibleMoves = inputPiece.GetPossibleMoves(inputBoard);
+        var possibleMoves = inputPiece.GetPossibleMoves(inputBoard, inputPiece.Coordinate, inputPiece);
         var randomMoveIndex = random.Next(possibleMoves.Count);
 
         return possibleMoves[randomMoveIndex];
     }
 
-    public static void moveRandomly(Board inputBoard, Piece inputPiece)
+    public static void MoveRandomly(Board inputBoard, Piece inputPiece)
     {
-        movePiece(inputBoard, inputPiece, getRandomMove(inputBoard, inputPiece));
+        MovePiece(inputBoard, inputPiece, GetRandomMove(inputBoard, inputPiece));
     }
 
 }

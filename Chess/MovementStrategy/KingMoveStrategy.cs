@@ -43,7 +43,7 @@ namespace Chess.MovementStrategy
 
             foreach (Coordinate move in kingMovesMinusEnemyMoves)
             {
-                if (MoveUtils.canMoveToCell(board, piece, move))
+                if (MoveUtils.CanMoveToCell(board, piece, move))
                 {
                     possibleMoves.Add(move);
                 }

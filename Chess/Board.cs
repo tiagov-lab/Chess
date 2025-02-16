@@ -12,7 +12,8 @@
             {
                 for (int y = 1; y < BoardSize + 1; y++)
                 {
-                    CellDict[new Coordinate(x, y)] = new Cell();
+                    Coordinate tempCoordinate = new Coordinate(x, y);
+                    CellDict[tempCoordinate] = new Cell(tempCoordinate);
                 }
             }
         }
@@ -22,6 +23,18 @@
             if (IsValidPosition(inputCoordinate))
             {
                 CellDict[inputCoordinate].PlacePiece(inputPiece);
+            }
+            else
+            {
+                throw new InvalidCoordinateException(inputCoordinate);
+            }
+        }
+
+        public void RemovePiece(Coordinate inputCoordinate)
+        {
+            if (IsValidPosition(inputCoordinate))
+            {
+                CellDict[inputCoordinate].RemovePiece();
             }
             else
             {

@@ -10,7 +10,7 @@ namespace Chess
 {
     public class Cell
     {
-
+        private Coordinate Coordinate; // Hmm maybe remove, as of now only used for naming.
         public Piece? Piece = null;
 
         public bool isOccupied()
@@ -26,10 +26,11 @@ namespace Chess
             
         }
 
-        public Cell()
+        public Cell(Coordinate coordinate)
         {
-
+            Coordinate = coordinate;
         }
+
 
         public void PlacePiece(Piece inputPiece)
         {

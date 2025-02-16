@@ -45,6 +45,6 @@ namespace Chess
             }
 
             // Insert data to DB
-        }
+        
     }
 }
