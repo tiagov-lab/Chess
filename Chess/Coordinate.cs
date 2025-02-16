@@ -31,14 +31,18 @@ namespace Chess
 
             sb.Append(TurnXIntoChar(inputX));
 
-            sb.Append((inputY + 1));   
+            sb.Append(TurnYIntoChar(inputY));  
 
             return sb.ToString();
         }
         
         private char TurnXIntoChar(int inputX)
         {
-            return Convert.ToChar(97 + inputX);
+            return Convert.ToChar(96 + inputX);
+        }
+        private int TurnYIntoChar(int inputY)
+        {
+            return (inputY);
         }
 
     }

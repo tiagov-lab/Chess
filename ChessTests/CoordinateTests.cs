@@ -9,7 +9,7 @@ public class CoordinateTests
     public void Test_ChessCoordinate_BottomLeftSquareIsA1()
     {
         // Arrange
-        var TestCoordinate = new Coordinate(0,0);
+        var TestCoordinate = new Coordinate(1,1);
         var CorrectName = "a1";
 
         // Act
@@ -23,7 +23,7 @@ public class CoordinateTests
     public void Test_ChessCoordinate_BottomRightSquareIsH1()
     {
         // Arrange
-        var TestCoordinate = new Coordinate(7, 0);
+        var TestCoordinate = new Coordinate(8, 1);
         var CorrectName = "h1";
 
         // Act
@@ -37,7 +37,7 @@ public class CoordinateTests
     public void Test_ChessCoordinate_UpperLeftSquareIsA8()
     {
         // Arrange
-        var TestCoordinate = new Coordinate(0, 7);
+        var TestCoordinate = new Coordinate(1,8);
         string CorrectName = "a8";
 
         // Act
@@ -51,7 +51,7 @@ public class CoordinateTests
     public void Test_ChessCoordinate_UpperRightSquareIsH8()
     {
         // Arrange
-        var TestCoordinate = new Coordinate(7, 7);
+        var TestCoordinate = new Coordinate(8,8);
         var CorrectName = "h8";
 
         // Act
