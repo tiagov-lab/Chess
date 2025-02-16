@@ -63,7 +63,7 @@ namespace Chess
         {
             if (moveStrategy == null)
                 throw new InvalidOperationException("Move strategy not set");
-            return moveStrategy.GetPossibleMoves(inputBoard, inputCoordinate, inputPiece);
+            return moveStrategy.GetPossibleMoves(inputBoard, inputPiece, inputCoordinate);
         }
 
         public void Die() // Need to think of a better name

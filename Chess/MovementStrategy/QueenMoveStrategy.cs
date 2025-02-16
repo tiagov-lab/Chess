@@ -9,7 +9,7 @@ namespace Chess.MovementStrategy
 {
     internal class QueenMoveStrategy : IMoveStrategy
     {
-        public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
+        public List<Coordinate> GetPossibleMoves(Board board, Piece piece, Coordinate coordinate)
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
 
@@ -39,7 +39,7 @@ namespace Chess.MovementStrategy
 
             foreach (Coordinate direction in queenDirections)
             {
-                possibleMoves.AddRange(MoveUtils.getMovesInDirection(board, piece, direction));
+                possibleMoves.AddRange(MoveUtils.GetMovesInDirection(board, piece, direction));
             }
             return possibleMoves;
         }

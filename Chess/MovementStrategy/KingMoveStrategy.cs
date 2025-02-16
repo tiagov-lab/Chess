@@ -8,7 +8,7 @@ namespace Chess.MovementStrategy
 {
     internal class KingMoveStrategy : IMoveStrategy
     {
-        public List<Coordinate> GetPossibleMoves(Piece piece, Board board)
+        public List<Coordinate> GetPossibleMoves(Board board, Piece piece, Coordinate inputCoordinate)
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
             List<Coordinate> enemyPossibleMoves = GetEnemyPossibleMoves(piece, board);
@@ -67,7 +67,7 @@ namespace Chess.MovementStrategy
 
             foreach (var p in EnemyPieces)
             {
-                var tempMoves = p.GetPossibleMoves(inputBoard);
+                var tempMoves = p.GetPossibleMoves(inputBoard, piece.Coordinate, piece);
 
                 possibleMoves.AddRange(tempMoves);
             }

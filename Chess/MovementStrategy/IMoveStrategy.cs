@@ -8,6 +8,6 @@ namespace Chess.MovementStrategy
 {
     public interface IMoveStrategy
     {
-        List<Coordinate> GetPossibleMoves(Board inputBoard, Coordinate inputCoordinate, Piece inputPiece);
+        List<Coordinate> GetPossibleMoves(Board inputBoard, Piece inputPiece, Coordinate inputCoordinate);
     }
 }

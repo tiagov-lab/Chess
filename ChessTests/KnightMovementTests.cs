@@ -15,24 +15,10 @@ public class KnightMovementTests
         var knight = new Piece(new Coordinate(3, 3), Gameloop.Colour.White, Gameloop.PieceType.Knight);
 
         // Act
-        var possibleMoves = knight.GetPossibleMoves(testBoard);
+        var possibleMoves = knight.GetPossibleMoves(testBoard, knight.Coordinate, knight);
 
         // Assert
         Assert.AreEqual(8, possibleMoves.Count);
     }
 
-    [TestMethod]
-    public void Test_KnightInCenter_CanMoveMultipleTimes()
-    {
-        // Arrange
-        Board testBoard = new Board();
-        testBoard.RemoveAllPieces();
-        var knight = new Piece(new Coordinate(3, 3), Gameloop.Colour.White, Gameloop.PieceType.Knight);
-
-        // Act
-        
-
-        // Assert
-        
-    }
 }
