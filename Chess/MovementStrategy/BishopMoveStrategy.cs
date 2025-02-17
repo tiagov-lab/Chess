@@ -15,7 +15,7 @@ namespace Chess.MovementStrategy
             int x = piece.Coordinate.X;
             int y = piece.Coordinate.Y;
 
-            // All Queen directions
+            // All Diagonal directions
             Coordinate[] bishopDirections = new Coordinate[]
             {
                 // Top left

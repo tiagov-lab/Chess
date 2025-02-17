@@ -67,8 +67,8 @@ public static class MoveUtils
 
         while (moveCounter < Board.BoardSize)
         {
-            currentX += inputDirection.X;
-            currentY += inputDirection.Y;
+            currentX += (inputDirection.X -1);
+            currentY += (inputDirection.Y - 1);
             Coordinate newPosition = new Coordinate(currentX, currentY);
 
             if (!inputBoard.IsValidPosition(newPosition))

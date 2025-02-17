@@ -15,8 +15,8 @@ namespace Chess.MovementStrategy
             int x = inputPiece.Coordinate.X;
             int y = inputPiece.Coordinate.Y;
 
-            // All Queen directions
-            Coordinate[] rookDirections = new Coordinate[]
+            // All 4 Lateral directions
+            List<Coordinate> rookDirections = new List<Coordinate>()
             {
                 // Top
                 new Coordinate(x, y + 1),
@@ -27,6 +27,8 @@ namespace Chess.MovementStrategy
                 // Bottom
                 new Coordinate(x, y - 1),
             };
+
+            rookDirections.RemoveAll(d => !inputBoard.IsValidPosition(d));
 
             foreach (Coordinate direction in rookDirections)
             {

@@ -6,7 +6,7 @@
 
         private static Dictionary<Coordinate, Cell> CellDict = new();
 
-        public static void InitCellDict()
+        private void InitCellDict()
         {
             for (int x = 1; x < BoardSize + 1; x++)
             {
