@@ -105,5 +105,26 @@ public static class MoveUtils
         MovePiece(inputBoard, inputPiece, GetRandomMove(inputBoard, inputPiece));
     }
 
+    public static List<Coordinate> GetEnemyPossibleMoves(Piece piece, Board inputBoard) // should it moved to MoveUtils?
+    {
+        List<Coordinate> possibleMoves = new List<Coordinate>();
+
+        var EnemyPieces = PieceTracker.GetEnemyPieces(piece);
+
+        if (EnemyPieces.Count() == 0)
+        {
+            return possibleMoves;
+        }
+
+        foreach (var p in EnemyPieces)
+        {
+            var tempMoves = p.GetPossibleMoves(inputBoard, piece.Coordinate, piece);
+
+            possibleMoves.AddRange(tempMoves);
+        }
+
+        return possibleMoves;
+    }
+
 }
 

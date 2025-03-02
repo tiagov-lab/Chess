@@ -11,7 +11,8 @@ namespace Chess.MovementStrategy
         public List<Coordinate> GetPossibleMoves(Board board, Piece piece, Coordinate inputCoordinate)
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
-            List<Coordinate> enemyPossibleMoves = GetEnemyPossibleMoves(piece, board);
+            List<Coordinate> enemyPossibleMoves = MoveUtils.GetEnemyPossibleMoves(piece, board);
+
 
             int x = piece.Coordinate.X;
             int y = piece.Coordinate.Y;
@@ -48,27 +49,6 @@ namespace Chess.MovementStrategy
                     possibleMoves.Add(move);
                 }
             }
-            return possibleMoves;
-        }
-
-        private List<Coordinate> GetEnemyPossibleMoves(Piece piece, Board inputBoard) // should it moved to MoveUtils?
-        {
-            List<Coordinate> possibleMoves = new List<Coordinate>();
-
-            var EnemyPieces = PieceTracker.GetEnemyPieces(piece);
-
-            if (EnemyPieces.Count() == 0)
-            {
-                return possibleMoves;
-            }
-
-            foreach (var p in EnemyPieces)
-            {
-                var tempMoves = p.GetPossibleMoves(inputBoard, piece.Coordinate, piece);
-
-                possibleMoves.AddRange(tempMoves);
-            }
-
             return possibleMoves;
         }
     }
