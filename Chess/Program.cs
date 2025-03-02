@@ -4,3 +4,6 @@ using Chess.MovementStrategy;
 using System.Diagnostics.Metrics;
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+var tempBoard = new Board();
+
+RenderGame.DisplayBoard(tempBoard);
