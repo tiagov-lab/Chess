@@ -55,10 +55,7 @@ namespace Chess.MovementStrategy
         {
             List<Coordinate> possibleMoves = new List<Coordinate>();
 
-            var EnemyPieces =
-                from p in Piece.PieceList
-                where p.Color != piece.Color
-                select p;
+            var EnemyPieces = PieceTracker.GetEnemyPieces(piece);
 
             if (EnemyPieces.Count() == 0)
             {

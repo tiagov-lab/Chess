@@ -36,7 +36,7 @@ namespace Chess
         {
             if (isOccupied())
             {
-                // Add code here for keeping track of eaten pieces
+                RemovePiece();
             }
 
             Piece = inputPiece;
