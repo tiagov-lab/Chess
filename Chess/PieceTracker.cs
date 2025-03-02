@@ -29,12 +29,9 @@ namespace Chess
 
         public static List<Piece> GetEnemyPieces(Piece piece)
         {
-            List<Piece> returnList =
-                (List<Piece>)(from p in _activePieces
-                where p.Color != piece.Color
-                select p);
-
-            return returnList;
+            return _activePieces
+                .Where(p => p.Color != piece.Color)
+                .ToList();
         }
 
     }

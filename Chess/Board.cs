@@ -4,7 +4,7 @@
     {
         public const int BoardSize = 8;
 
-        private static Dictionary<Coordinate, Cell> CellDict = new();
+        private Dictionary<Coordinate, Cell> CellDict = new();
 
         private void InitCellDict()
         {
@@ -13,7 +13,7 @@
                 for (int y = 1; y < BoardSize + 1; y++)
                 {
                     Coordinate tempCoordinate = new Coordinate(x, y);
-                    CellDict[tempCoordinate] = new Cell(tempCoordinate);
+                    CellDict.TryAdd(tempCoordinate, new Cell(tempCoordinate));
                 }
             }
         }
@@ -28,6 +28,11 @@
             {
                 throw new InvalidCoordinateException(inputCoordinate);
             }
+        }
+
+        public void SetPiece(Piece inputPiece)
+        {
+            SetPiece(inputPiece.Coordinate, inputPiece);    
         }
 
         public void RemovePiece(Coordinate inputCoordinate)

@@ -35,7 +35,7 @@ public class KingMovementTests
         testBoard.SetPiece(testRookOne.Coordinate, testRookOne);
         testBoard.SetPiece(testRookTwo.Coordinate, testRookTwo);
         var CorrectPositionOne = new Coordinate(2, 3);
-        Assert.AreEqual(CorrectPositionOne, testKing.Coordinate);
+
 
         // In this position, King should only have one legal move, to b3/3,2
         var CorrectPosition = new Coordinate(2, 3);

@@ -60,35 +60,23 @@ public static class MoveUtils
         // Takes in one direction as a Coordinate and searches continously.
         // (x, y + 1)  as input would search for all spaces upwads, (x, y - 1) downwards, etc.
 
-        List<Coordinate> possibleMoves = new List<Coordinate>();
-        int currentX = inputPiece.Coordinate.X;
-        int currentY = inputPiece.Coordinate.Y;
-        int moveCounter = 0;
+        var moves = new List<Coordinate>();
+        var currentPos = inputPiece.Coordinate;
 
-        while (moveCounter < Board.BoardSize)
+        while (true)
         {
-            currentX += (inputDirection.X -1);
-            currentY += (inputDirection.Y - 1);
-            Coordinate newPosition = new Coordinate(currentX, currentY);
-
-            if (!inputBoard.IsValidPosition(newPosition))
-            {
+            currentPos = currentPos + inputDirection;
+            if (!inputBoard.IsValidPosition(currentPos))
                 break;
-            }
 
-            if (CanMoveToCell(inputBoard, inputPiece, newPosition))
-            {
-                possibleMoves.Add(newPosition);
-            }
+            if (CanMoveToCell(inputBoard, inputPiece, currentPos))
+                moves.Add(currentPos);
             else
-            {
                 break;
-            }
-
-            moveCounter++;
         }
 
-        return possibleMoves;
+        return moves;
+
     }
 
     public static Coordinate GetRandomMove(Board inputBoard, Piece inputPiece)
