@@ -54,6 +54,5 @@ namespace Chess
         {
             return new Coordinate(a.X - b.X, a.Y - b.Y);
         }
-
     }
 }

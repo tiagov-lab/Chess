@@ -15,7 +15,7 @@ public class MoveUtilsTests
         testBoard.RemoveAllPieces();
 
         /// Add Knight
-        var rook = new Piece(new Coordinate(1, 1), Gameloop.Colour.White, Gameloop.PieceType.Knight);
+        var rook = new Piece(new Coordinate(1, 1), Gameloop.Colour.White, Gameloop.PieceType.Rook);
         testBoard.SetPiece(rook);
 
         /// CorrectMoves
@@ -43,4 +43,7 @@ public class MoveUtilsTests
         // Assert
         Assert.AreEqual(correctMoves, possibleMoves);
     }
+
+
+
 }

@@ -15,13 +15,13 @@ namespace Chess
 
         public bool isOccupied()
         {
-            if (Piece == null)
+            if (Piece != null)
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
             
         }

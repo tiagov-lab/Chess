@@ -65,20 +65,29 @@ public static class MoveUtils
 
         while (true)
         {
-            currentPos = currentPos + inputDirection;
             if (!inputBoard.IsValidPosition(currentPos))
+            {
                 break;
-
+            }
+              
             if (CanMoveToCell(inputBoard, inputPiece, currentPos))
+            {
                 moves.Add(currentPos);
+            }
+               
             else
+            {
                 break;
+            }
+
+            currentPos = CoordinateExtension.Offset(currentPos, inputDirection);
+
         }
 
         return moves;
 
     }
-
+    
     public static Coordinate GetRandomMove(Board inputBoard, Piece inputPiece)
     {
         var random = new Random();
@@ -93,26 +102,11 @@ public static class MoveUtils
         MovePiece(inputBoard, inputPiece, GetRandomMove(inputBoard, inputPiece));
     }
 
-    public static List<Coordinate> GetEnemyPossibleMoves(Piece piece, Board inputBoard) // should it moved to MoveUtils?
+    public static List<Coordinate> GetEnemyPossibleMoves(Piece piece, Board inputBoard) 
     {
-        List<Coordinate> possibleMoves = new List<Coordinate>();
-
-        var EnemyPieces = PieceTracker.GetEnemyPieces(piece);
-
-        if (EnemyPieces.Count() == 0)
-        {
-            return possibleMoves;
-        }
-
-        foreach (var p in EnemyPieces)
-        {
-            var tempMoves = p.GetPossibleMoves(inputBoard, piece.Coordinate, piece);
-
-            possibleMoves.AddRange(tempMoves);
-        }
-
-        return possibleMoves;
+        return PieceTracker.GetEnemyPieces(piece)
+            .SelectMany(enemy => enemy.GetPossibleMoves(inputBoard, piece.Coordinate, piece))
+            .ToList();
     }
 
 }
-
