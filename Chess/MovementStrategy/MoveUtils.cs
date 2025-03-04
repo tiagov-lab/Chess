@@ -54,34 +54,29 @@ public static class MoveUtils
         return true;
     }
 
-    public static List<Coordinate> GetMovesInDirection(Board inputBoard, Piece inputPiece, Coordinate inputDirection)
+    /// <summary>
+    /// Calculates all valid moves in a specific direction from a piece's position.
+    /// </summary>
+    /// <param name="inputBoard">The current chess board</param>
+    /// <param name="inputPiece">The piece to calculate moves for</param>
+    /// <param name="offsetVector">The directional offset vector (e.g., (0,1) for up, (1,0) for right)</param>
+    /// <returns>A list of valid coordinates the piece can move to in the specified direction</returns>
+    public static List<Coordinate> GetMovesInDirection(Board inputBoard, Piece inputPiece, Coordinate offsetVector)
     {
-        // Helper method for pieces that can move indefinitelty in one direction (Queen, Bishop and Rook)
-        // Takes in one direction as a Coordinate and searches continously.
-        // (x, y + 1)  as input would search for all spaces upwads, (x, y - 1) downwards, etc.
-
         var moves = new List<Coordinate>();
-        var currentPos = inputPiece.Coordinate;
+        var currentPos = CoordinateExtension.Offset(inputPiece.Coordinate, offsetVector);
 
-        while (true)
+        while (inputBoard.IsValidPosition(currentPos))
         {
-            if (!inputBoard.IsValidPosition(currentPos))
-            {
-                break;
-            }
-              
             if (CanMoveToCell(inputBoard, inputPiece, currentPos))
             {
                 moves.Add(currentPos);
+                currentPos = CoordinateExtension.Offset(currentPos, offsetVector);
             }
-               
             else
             {
                 break;
             }
-
-            currentPos = CoordinateExtension.Offset(currentPos, inputDirection);
-
         }
 
         return moves;
